@@ -1,7 +1,11 @@
 package com.ugurcanlacin.sportclubsystem.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,8 +32,12 @@ public class AddDiet implements Serializable{
 		Diet dietObj = new Diet();
 		dietObj.setDiet(diet);
 		dietObj.setTimestamp(timestamp);
-		u.setDiet(dietObj);
-		
+		Set<Diet> dietList = u.getDiet();
+		if(dietList == null){
+			dietList = new HashSet<Diet>();
+		}
+			dietList.add(dietObj);
+		u.setDiet(dietList);
 		userService.mergeUser(u);
 	}
 	

@@ -60,23 +60,23 @@ public class User implements java.io.Serializable {
 	inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
 	private List<Role> role;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="user_diet",
 	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="diet_id", referencedColumnName="id")})
-	private Diet diet;
+	private Set<Diet> diet;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="user_workout",
 	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="workout_id", referencedColumnName="id")})
-	private Workout workout;
+	private Set<Workout> workout;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="user_pdetails",
 	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="pdetails_id", referencedColumnName="id")})
-	private PersonalDetails personalDetails;
+	private Set<PersonalDetails> personalDetails;
 	
 	public User() {
 	}
@@ -198,30 +198,31 @@ public class User implements java.io.Serializable {
 		this.role = role;
 	}
 
-	public Diet getDiet() {
+	public Set<Diet> getDiet() {
 		return diet;
 	}
 
-	public void setDiet(Diet diet) {
+	public void setDiet(Set<Diet> diet) {
 		this.diet = diet;
 	}
 
-	public Workout getWorkout() {
+	public Set<Workout> getWorkout() {
 		return workout;
 	}
 
-	public void setWorkout(Workout workout) {
+	public void setWorkout(Set<Workout> workout) {
 		this.workout = workout;
 	}
 
-	public PersonalDetails getPersonalDetails() {
+	public Set<PersonalDetails> getPersonalDetails() {
 		return personalDetails;
 	}
 
-	public void setPersonalDetails(PersonalDetails personalDetails) {
+	public void setPersonalDetails(Set<PersonalDetails> personalDetails) {
 		this.personalDetails = personalDetails;
 	}
 
+	
 	
 
 }
