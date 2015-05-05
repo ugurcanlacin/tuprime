@@ -6,15 +6,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="">
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
-	<ui:define name="content">
-	    Add your content here or delete to use the default
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
-	</ui:define>
-</ui:composition>
+<h:head></h:head>
+<h:body>
+
+	<h:form>
+		Username : <h:inputText value="#{addWorkoutBean.username}" />
+		Workout : <h:inputTextarea value="#{addWorkoutBean.workoutProgram}" autocomplete="off" />
+		<h:commandButton value="Submit" action="#{addWorkoutBean.addWorkoutProgram()}" />
+	</h:form>
+
+</h:body>
 </html>

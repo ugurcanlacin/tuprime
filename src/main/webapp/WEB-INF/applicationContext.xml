@@ -101,4 +101,8 @@
 		<property name="dietService" ref="dietService" />
 		<property name="userService" ref="userService" />
 	</bean>
+		<bean id="addWorkoutBean"
+		class="com.ugurcanlacin.sportclubsystem.beans.AddWorkout">
+		<property name="userService" ref="userService" />
+	</bean>
 </beans>
