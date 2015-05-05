@@ -44,5 +44,9 @@ public class UserServiceImpl implements UserService{
 	public List<User> getAllUsers() {
 		return userDao.getAllUsers();
 	}
+	@Transactional
+	public void mergeUser(User user) {
+		userDao.mergeUser(user);
+	}
 
 }

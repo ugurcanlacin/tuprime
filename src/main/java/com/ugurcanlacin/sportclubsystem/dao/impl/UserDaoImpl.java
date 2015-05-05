@@ -15,8 +15,12 @@ public class UserDaoImpl implements UserDao {
 
 	private SessionFactory sessionFactory;
 
-	public void persistUser(User user) {
+	public void mergeUser(User user) {
 		sessionFactory.getCurrentSession().merge(user);
+	}
+
+	public void persistUser(User user) {
+		sessionFactory.getCurrentSession().persist(user);
 	}
 
 	public void updateUser(User user) {
@@ -54,4 +58,5 @@ public class UserDaoImpl implements UserDao {
 		return sessionFactory.getCurrentSession().getNamedQuery("getAllUsers").list();
 	}
 
+	
 }

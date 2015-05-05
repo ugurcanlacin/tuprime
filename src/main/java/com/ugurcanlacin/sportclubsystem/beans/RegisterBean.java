@@ -33,11 +33,11 @@ public class RegisterBean implements Serializable{
 	private UserService userService;
 	private RoleService roleService;
 	
-	public void persistUser(){
+	public void mergeUser(){
 		User user = new User(username, passwordHash, name, email, active, creationTimestamp);
 		user.setActivationHash(Tool.encrypt(email));
 		user = setRole(user);
-		userService.persistUser(user);
+		userService.mergeUser(user);
 	}
 	public User setRole(User user){
 		List<Role> roleList = new ArrayList();

@@ -8,6 +8,7 @@ import com.ugurcanlacin.sportclubsystem.model.User;
 
 
 public interface UserDao {
+	void mergeUser(User user);
 	void persistUser(User user);
 	void updateUser(User user);
 	void deleteUser(User user);

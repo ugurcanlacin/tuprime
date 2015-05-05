@@ -96,8 +96,9 @@
 		class="com.ugurcanlacin.sportclubsystem.service.impl.DietServiceImpl">
 		<property name="dietDao" ref="dietDao" />
 	</bean>
-	<bean id="addDiet"
+	<bean id="addDietBean"
 		class="com.ugurcanlacin.sportclubsystem.beans.AddDiet">
 		<property name="dietService" ref="dietService" />
+		<property name="userService" ref="userService" />
 	</bean>
 </beans>

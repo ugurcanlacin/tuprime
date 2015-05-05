@@ -9,7 +9,11 @@
 <h:head></h:head>
 <h:body>
 
-
+	<h:form>
+		Username : <h:inputText value="#{addDietBean.username}" />
+		Diet : <h:inputTextarea value="#{addDietBean.diet}" autocomplete="off" />
+		<h:commandButton value="Submit" action="#{addDietBean.addDiet()}" />
+	</h:form>
 
 </h:body>
 </html>
