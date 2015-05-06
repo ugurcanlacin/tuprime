@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Gerekli Css dosyalarını burada tanımlamalısın</title>
+	<title>Sport Club System</title>
 	<!-- örnek css tanımlaması
            <h:outputStylesheet name="ekiciStyle.css" library="css" />
 -->
@@ -16,13 +16,13 @@
 		<!-- Sayfanın üst kısmı -->
 		<p:layoutUnit position="north" resizable="false"
 			style="border: none; padding: 0px !important">
-        <p:outputLabel value="LOGIN SYSTEM"></p:outputLabel>
+        <p:outputLabel value="LOGIN"></p:outputLabel>
               </p:layoutUnit>
 
 
 		<!-- Sayfanın orta kısmı -->
 		<p:layoutUnit position="center" id="center"
-			style="overflow: hidden; padding-top: 0px;">
+			style="overflow: hidden; padding-top: 0px; background-color:#99CCFF;">
 
 			<!-- alttaki tanımlama oluşturacağın normal sayfaların orta kısma yerleşmesi için kullanacağın  etiket.  mesela users.xhtml sayfasında <h:form> dan önce <ui:define name="body"> etiketini eklersen o sayfan templatenin ortasında görünrülenir. -->
 			<ui:insert name="body" />

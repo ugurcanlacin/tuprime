@@ -32,7 +32,7 @@
 		<param-value>Development</param-value>
 	</context-param>
 	<welcome-file-list>
-		<welcome-file>pages/common/index.xhtml</welcome-file>
+		<welcome-file>pages/common/login.xhtml</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
