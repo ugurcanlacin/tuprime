@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.ugurcanlacin.sportclubsystem</groupId>
-  <artifactId>SportClubSystem</artifactId>
+  <groupId>com.ugurcanlacin.sportclubsystemv1</groupId>
+  <artifactId>SportClubSystemv1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <description>SportClubSystem</description>
+  <description>SportClubSystemv1</description>
   <dependencies>
 		<dependency>
 			<groupId>aopalliance</groupId>
