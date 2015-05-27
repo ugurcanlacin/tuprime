@@ -38,7 +38,7 @@ public class AddDiet implements Serializable{
 		}
 			dietList.add(dietObj);
 		u.setDiet(dietList);
-		userService.mergeUser(u);
+		userService.merge(u);
 	}
 	
 	

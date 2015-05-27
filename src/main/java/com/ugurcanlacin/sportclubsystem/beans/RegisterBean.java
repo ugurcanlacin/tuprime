@@ -37,7 +37,7 @@ public class RegisterBean implements Serializable{
 		User user = new User(username, passwordHash, name, email, active, creationTimestamp);
 		user.setActivationHash(Tool.encrypt(email));
 		user = setRole(user);
-		userService.mergeUser(user);
+		userService.merge(user);
 	}
 	public User setRole(User user){
 		List<Role> roleList = new ArrayList();

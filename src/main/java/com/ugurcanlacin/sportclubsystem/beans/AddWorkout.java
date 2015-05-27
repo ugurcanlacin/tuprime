@@ -33,7 +33,7 @@ public class AddWorkout implements Serializable {
 		}
 		workoutSet.add(w);
 		u.setWorkout(workoutSet);
-		userService.mergeUser(u);
+		userService.merge(u);
 	}
 
 	public UserService getUserService() {

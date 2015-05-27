@@ -1,5 +1,8 @@
 package com.ugurcanlacin.sportclubsystem.dao;
 
-public interface WorkoutDao {
+import com.ugurcanlacin.sportclubsystem.model.Workout;
+
+
+public interface WorkoutDao extends GenericDao<Workout>{
 
 }

@@ -4,26 +4,16 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ugurcanlacin.sportclubsystem.dao.GenericDao;
 import com.ugurcanlacin.sportclubsystem.dao.UserDao;
 import com.ugurcanlacin.sportclubsystem.model.User;
 import com.ugurcanlacin.sportclubsystem.service.UserService;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends GenericServiceImpl<User> implements UserService{
 
 	private UserDao userDao;
 	
-	@Transactional
-	public void persistUser(User user) {
-		userDao.persistUser(user);
-	}
-	@Transactional
-	public void updateUser(User user) {
-		userDao.updateUser(user);
-	}
-	@Transactional
-	public void deleteUser(User user) {
-		userDao.deleteUser(user);
-	}
+	
 	@Transactional
 	public User loadUser(String username) {
 		return userDao.loadUser(username);
@@ -44,9 +34,10 @@ public class UserServiceImpl implements UserService{
 	public List<User> getAllUsers() {
 		return userDao.getAllUsers();
 	}
-	@Transactional
-	public void mergeUser(User user) {
-		userDao.mergeUser(user);
+	
+	@Override
+	public GenericDao<User> getDao() {
+		return userDao;
 	}
 
 }

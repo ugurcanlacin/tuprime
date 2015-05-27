@@ -3,6 +3,7 @@ package com.ugurcanlacin.sportclubsystem.dao.impl;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,25 +12,9 @@ import com.ugurcanlacin.sportclubsystem.model.User;
 import com.ugurcanlacin.sportclubsystem.util.Tool;
 
 @Transactional
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
 	private SessionFactory sessionFactory;
-
-	public void mergeUser(User user) {
-		sessionFactory.getCurrentSession().merge(user);
-	}
-
-	public void persistUser(User user) {
-		sessionFactory.getCurrentSession().persist(user);
-	}
-
-	public void updateUser(User user) {
-		sessionFactory.getCurrentSession().update(user);
-	}
-
-	public void deleteUser(User user) {
-		sessionFactory.getCurrentSession().delete(user);
-	}
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -57,6 +42,8 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getAllUsers() {
 		return sessionFactory.getCurrentSession().getNamedQuery("getAllUsers").list();
 	}
+
+
 
 	
 }
