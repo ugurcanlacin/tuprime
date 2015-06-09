@@ -64,7 +64,7 @@
 		class="com.ugurcanlacin.sportclubsystem.dao.impl.PersonalDetailsDaoImpl">
 		<property name="sessionFactory" ref="hibernate4SessionFactory" />
 	</bean>
-
+	
 	<bean id="userService"
 		class="com.ugurcanlacin.sportclubsystem.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao" />
@@ -73,6 +73,20 @@
 		class="com.ugurcanlacin.sportclubsystem.service.impl.RoleServiceImpl">
 		<property name="roleDao" ref="roleDao" />
 	</bean>
+	<bean id="workoutService"
+		class="com.ugurcanlacin.sportclubsystem.service.impl.WorkoutServiceImpl">
+		<property name="workoutDao" ref="workoutDao" />
+	</bean>
+	<bean id="personalDetailsService"
+		class="com.ugurcanlacin.sportclubsystem.service.impl.PersonalDetailsServiceImpl">
+		<property name="personalDetailsDao" ref="personalDetailsDao" />
+	</bean>
+	<bean id="dietService"
+		class="com.ugurcanlacin.sportclubsystem.service.impl.DietServiceImpl">
+		<property name="dietDao" ref="dietDao" />
+	</bean>
+	
+	
 	<bean id="registerBean" class="com.ugurcanlacin.sportclubsystem.beans.RegisterBean">
 		<property name="userService" ref="userService" />
 		<property name="roleService" ref="roleService" />
@@ -92,17 +106,12 @@
 	<bean id="userBean" class="com.ugurcanlacin.sportclubsystem.beans.UserBean">
 		<property name="userService" ref="userService" />
 	</bean>
-	<bean id="dietService"
-		class="com.ugurcanlacin.sportclubsystem.service.impl.DietServiceImpl">
-		<property name="dietDao" ref="dietDao" />
-	</bean>
-	<bean id="addDietBean"
-		class="com.ugurcanlacin.sportclubsystem.beans.AddDiet">
+
+	<bean id="addDietBean" class="com.ugurcanlacin.sportclubsystem.beans.AddDiet">
 		<property name="dietService" ref="dietService" />
 		<property name="userService" ref="userService" />
 	</bean>
-		<bean id="addWorkoutBean"
-		class="com.ugurcanlacin.sportclubsystem.beans.AddWorkout">
+	<bean id="addWorkoutBean" class="com.ugurcanlacin.sportclubsystem.beans.AddWorkout">
 		<property name="userService" ref="userService" />
 	</bean>
 </beans>
