@@ -1,42 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:faces="http://www.springframework.org/schema/faces"
-	xmlns:int-security="http://www.springframework.org/schema/integration/security"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:sec="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/integration/security http://www.springframework.org/schema/integration/security/spring-integration-security-2.0.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces-2.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-<!-- -->
-	<context:component-scan base-package="com.ugurcanlacin.sportclubsystem.*" />
-
-	<!-- resource security Note: Access-denied-page is invoked when user is 
-		AUTHENTICATED but is not AUTHORIZED to access protected resources. When user 
-		is NOT AUTHENTICATED, he is moved into form-login instead of access-denied-page. -->
-
-	<sec:http auto-config="true" use-expressions="true"
-		access-denied-page="/pages/common/accessDenied.xhtml">
-		<sec:form-login login-page="/pages/common/login.xhtml" />
-		<sec:intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/pages/user/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/pages/trainer/**" access="hasAnyRole('ROLE_TRAINER','ROLE_ADMIN')" />
-	</sec:http>
-
-
-	<sec:global-method-security
-		secured-annotations="enabled" jsr250-annotations="enabled">
-	</sec:global-method-security>
-
-	<!-- manager responsible for loading user account with assigned roles -->
-	<sec:authentication-manager alias="authenticationManager">
-		<sec:authentication-provider
-			user-service-ref="userDetailsService" />
-	</sec:authentication-manager>
-
-</beans>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+ 
+	<!-- enable use-expressions -->
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+ 
+		<!-- access denied page -->
+		<access-denied-handler error-page="/404" />
+		<form-login 
+		    login-page="/login" 
+		    default-target-url="/home"
+			authentication-failure-url="/login?error" 
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
+		<!-- enable csrf protection -->
+		<csrf />
+	</http>
+ 
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsService" >
+			  <password-encoder hash="md5"></password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+ 
+</beans:beans>
