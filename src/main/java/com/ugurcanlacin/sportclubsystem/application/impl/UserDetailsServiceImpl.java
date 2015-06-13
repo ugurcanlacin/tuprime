@@ -1,6 +1,5 @@
 package com.ugurcanlacin.sportclubsystem.application.impl;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,12 +24,17 @@ import com.ugurcanlacin.sportclubsystem.service.UserService;
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	
 	private UserService userService;
 	private RoleService roleService;
 
 	private HashMap<String, org.springframework.security.core.userdetails.User> users = new HashMap<String, org.springframework.security.core.userdetails.User>();
 
+	boolean enabled = false;
+	boolean accountNonExpired = true;
+	boolean credentialsNonExpired = true;
+	boolean accountNonLocked = true;
+	
+	
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		loadUser(username);
@@ -47,23 +51,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 	private void loadUser(String username) {
-		boolean enabled = true;
-		boolean accountNonExpired = true;
-		boolean credentialsNonExpired = true;
-		boolean accountNonLocked = true;
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		User loadedUser = userService.loadUser(username);
 		String password = loadedUser.getPasswordHash();
-		List<?> roles = loadedUser.getRole();
+		enabled = loadedUser.isActive();
+		List<Role> roles = loadedUser.getRole();
 		for (Object role : roles) {
-			authorities.add(new GrantedAuthorityImpl(((Role) role)
-					.getRole()));
+			authorities.add(new GrantedAuthorityImpl(((Role) role).getRole()));
 		}
 		users.put(username,
 				new org.springframework.security.core.userdetails.User(
 						username, password, enabled, accountNonExpired,
-						credentialsNonExpired, accountNonLocked,
-						authorities));
+						credentialsNonExpired, accountNonLocked, authorities));
 	}
 
 	public UserService getUserService() {
@@ -81,6 +80,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public void setRoleService(RoleService roleService) {
 		this.roleService = roleService;
 	}
-
 
 }
