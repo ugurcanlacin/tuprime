@@ -29,13 +29,9 @@
   </style>
 </head>
 <body class="blue-grey lighten-5">
-  <nav class="deep-orange lighten-2" role="navigation">
-    <div class="nav-wrapper container ">
-      <a id="logo-container" href="#" class="brand-logo admin-dashboard ">Admin Dashboard</a>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    </div>
-  </nav>
 
+ <jsp:include page="header.jsp"/>
+ 
 <div class="container">
   <div class="row admin-menu">
     <div class="col s4  z-depth-3 grey lighten-5 center">
@@ -59,13 +55,7 @@
   </div>
 </div>
 
-<footer class="page-footer admin-footer transparent">
-          <div class="footer-copyright">
-            <div class="container grey-text text-darken-3">
-            © 2015 Copyright Sport Club System
-            </div>
-          </div>
-</footer>
+<jsp:include page="footer.jsp"/>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
