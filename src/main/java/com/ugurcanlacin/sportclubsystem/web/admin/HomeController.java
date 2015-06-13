@@ -1,4 +1,4 @@
-package com.ugurcanlacin.sportclubsystem.web;
+package com.ugurcanlacin.sportclubsystem.web.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +23,7 @@ public class HomeController {
 		} else if (logout != null) {
 			message = "Logout successful !";
 		}
-		return new ModelAndView("login", "message", message);
+		return new ModelAndView("admin/login", "message", message);
 	}
+	
 }

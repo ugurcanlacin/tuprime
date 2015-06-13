@@ -66,13 +66,7 @@
 	<bean id="roleService" class="com.ugurcanlacin.sportclubsystem.service.impl.RoleServiceImpl">
 		<property name="roleDao" ref="roleDao" />
 	</bean>
-	<bean id="registerBean" class="com.ugurcanlacin.sportclubsystem.beans.RegisterBean">
-		<property name="userService" ref="userService" />
-		<property name="roleService" ref="roleService" />
-	</bean>
-	<bean id="userBean" class="com.ugurcanlacin.sportclubsystem.beans.UserBean">
-		<property name="userService" ref="userService" />
-	</bean>
+
 	<bean id="userDetailsService" class="com.ugurcanlacin.sportclubsystem.application.impl.UserDetailsServiceImpl">
 		<property name="userService" ref="userService" />
 		<property name="roleService" ref="roleService" />

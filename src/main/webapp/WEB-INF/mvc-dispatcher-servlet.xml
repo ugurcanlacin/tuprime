@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<context:component-scan base-package="com.ugurcanlacin.sportclubsystem.web" />
+	<context:component-scan base-package="com.ugurcanlacin.sportclubsystem.web.*" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:annotation-driven/>
 	<bean

@@ -8,13 +8,13 @@
  
 	<!-- enable use-expressions -->
 	<http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
  
 		<!-- access denied page -->
 		<access-denied-handler error-page="/404" />
 		<form-login 
 		    login-page="/login" 
-		    default-target-url="/home"
+		    default-target-url="/admin/dashboard"
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
