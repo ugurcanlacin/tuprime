@@ -8,9 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView welcome(){
-		ModelAndView model = new ModelAndView("admin/index");
-		return model;
+	public ModelAndView getDashboard(){
+		return	new ModelAndView("admin/index");
+	}
+	
+	@RequestMapping("/usermanagement")
+	public ModelAndView getUserManagement(){
+		return new ModelAndView("admin/userManagement");
 	}
 }

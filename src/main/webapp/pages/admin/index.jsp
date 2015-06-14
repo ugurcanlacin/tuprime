@@ -35,7 +35,7 @@
 <div class="container">
   <div class="row admin-menu">
     <div class="col s4  z-depth-3 grey lighten-5 center">
-      <a href="#">
+      <a href='<c:url value="/admin/usermanagement"/>'>
         <i class="large mdi-action-account-box "></i>
         <p class="grey-text text-darken-3">User Management</p>
       </a>
