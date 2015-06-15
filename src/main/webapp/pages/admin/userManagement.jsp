@@ -38,12 +38,26 @@
 
 		
         <tbody>
-        <c:forEach items="${demoNames}" var="DemoNames">
+        <c:forEach items="${users}" var="user">
 		    <tr>
-		        <td>${DemoNames.name}</td>
+		        <td>${user.id}</td>
+		        <td>${user.username}</td>
+		        <td>${user.passwordHash}</td>
+		        <td>${user.name}</td>
+		        <td>${user.surname}</td>
+		        <td>${user.email}</td>
+		        <td>${user.active}</td>
+		        <td>${user.creationTimestamp}</td>
 		    </tr>
 		</c:forEach>
-          <tr>
+          
+        </tbody>
+        </table>
+</div>
+
+
+	<!-- 
+	<tr>
             <td>1</td>
             <td>admin</td>
             <td>admin</td>
@@ -53,13 +67,7 @@
             <td>true</td>
             <td>30-02-2015</td>
           </tr>
-        </tbody>
-        </table>
-</div>
-
-
-
-
+	 -->
 	<jsp:include page="footer.jsp"/>
 
 
