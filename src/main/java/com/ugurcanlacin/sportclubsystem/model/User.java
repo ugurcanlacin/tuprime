@@ -1,6 +1,7 @@
 package com.ugurcanlacin.sportclubsystem.model;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +28,8 @@ import javax.persistence.CascadeType;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+import com.ugurcanlacin.sportclubsystem.util.Tool;
+
 
 @NamedQueries({
 	@NamedQuery(name = "getUser", query = "from User u where u.username =:username and u.passwordHash = :password"),
@@ -51,7 +54,7 @@ public class User implements java.io.Serializable {
 	private String surname;
 	private String email;
 	private boolean active;
-	private Date creationTimestamp;
+	private Date creationTimestamp = new Date();
 	private String activationHash;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -130,7 +133,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+		this.passwordHash = Tool.encrypt(passwordHash);
 	}
 
 	@Column(name = "name", nullable = false, length = 64)
@@ -169,7 +172,7 @@ public class User implements java.io.Serializable {
 		this.active = active;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_timestamp", nullable = false, length = 10)
 	public Date getCreationTimestamp() {
 		return this.creationTimestamp;
