@@ -29,7 +29,7 @@
             <form:form  class="col s12" action="adduser" method="post" commandName="userForm">
               <div class="row">
                 <div class="input-field col s6">
-                  <form:input path="name" id="name"  class="validate"/>
+                  <form:input path="name" id="name"  class="validate" required="required"/>
                   <label for="name">Name</label>
                 </div>
                 <div class="input-field col s6">
@@ -39,19 +39,19 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                   <form:input path="username" id="username"  class="validate"/>
+                   <form:input path="username" id="username"  class="validate" required="required"/>
                   <label for="username">Username</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <form:password path="passwordHash" id="password" class="validate"/>
+                  <form:password path="passwordHash" id="password" class="validate" required="required"/>
                   <label for="password">Password</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <form:input path="email"  id="email" type="email" class="validate"/>
+                  <form:input path="email"  id="email" type="email" class="validate" required="required"/>
                   <label for="email">Email</label>
                 </div>
               </div>
