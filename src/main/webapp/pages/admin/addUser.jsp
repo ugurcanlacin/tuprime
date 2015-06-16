@@ -29,17 +29,17 @@
             <form:form  class="col s12" action="adduser" method="post" commandName="userForm">
               <div class="row">
                 <div class="input-field col s6">
-                  <form:input path="name" id="name"  class="validate" required="required"/>
+                  <form:input path="name" id="name"  class="validate" required="required" maxlength="64"/>
                   <label for="name">Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <form:input path="surname" id="surname"  class="validate"/>
+                  <form:input path="surname" id="surname"  class="validate" maxlength="64"/>
                   <label for="surname">Surname</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                   <form:input path="username" id="username"  class="validate" required="required"/>
+                   <form:input path="username" id="username"  class="validate" required="required" maxlength="64"/>
                   <label for="username">Username</label>
                 </div>
               </div>
@@ -51,7 +51,7 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <form:input path="email"  id="email" type="email" class="validate" required="required"/>
+                  <form:input path="email"  id="email" type="email" class="validate" required="required" maxlength="64"/>
                   <label for="email">Email</label>
                 </div>
               </div>
