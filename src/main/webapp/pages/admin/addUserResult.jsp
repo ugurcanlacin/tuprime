@@ -23,11 +23,11 @@
 <div class="container">
 	<div class="row">
 		<h2 class="center">${result}</h2>
+		<p class="center">
+			<a class="waves-effect waves-light btn center" href="<c:url value="/admin/usermanagement" />">Back to User Management</a>
+		</p>
 	</div>
 </div>
-
-
-
 
  
    <jsp:include page="footer.jsp"/>
