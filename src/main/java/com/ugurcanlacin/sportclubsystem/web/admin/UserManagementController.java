@@ -61,5 +61,26 @@ public class UserManagementController {
 		return "redirect:/admin/usermanagement";
 	}
 	
+	@RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
+	public ModelAndView editUser(@PathVariable("id") int id){
+		User userForm = userService.find(id);
+		ModelAndView model = new ModelAndView("admin/editUser");
+		model.addObject("userForm", userForm);
+		return model;
+	}
 	
+	@RequestMapping(value = "/edituser", method = RequestMethod.POST)
+	public ModelAndView editUserProccess(@ModelAttribute("userForm") User user){
+		ModelAndView model =new ModelAndView("admin/editUserResult");
+		String password = userService.find(user.getId()).getPasswordHash();
+		try {
+			user.setPasswordHash(password);
+			userService.update(user);
+			model.addObject("result", "Edit Succeeded!");
+		} catch (Exception e) {
+			model.addObject("result", "Edit Failed!");
+		}
+		model.addObject("userForm", user);
+		return model;
+	}
 }
