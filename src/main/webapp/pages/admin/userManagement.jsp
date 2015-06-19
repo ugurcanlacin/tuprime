@@ -25,6 +25,7 @@
       <table class="hoverable">
         <thead>
           <tr>
+          	  
               <th data-field="id">id</th>
               <th data-field="username">username</th>
               <th data-field="passwordhash">passwordhash</th>
@@ -48,6 +49,10 @@
 		        <td>${user.email}</td>
 		        <td>${user.active}</td>
 		        <td>${user.creationTimestamp}</td>
+		        <td> <!-- Actions for the individual item -->
+		            <a href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Delete</a>
+		            <a href="<c:url value="/itemEdit.html?id=${item.id}" />">Edit</a>
+		        </td>
 		    </tr>
 		</c:forEach>
           

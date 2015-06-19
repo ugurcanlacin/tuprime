@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +48,17 @@ public class UserManagementController {
 		}
 		model.addObject("userForm", user);
 		return model;
+	}
+	
+	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
+	public String deleteUser(@PathVariable("id") int id){
+		User user = userService.find(id);
+		try {
+			userService.delete(user);
+		} catch (Exception e) {
+			
+		}
+		return "redirect:/admin/usermanagement";
 	}
 	
 	
