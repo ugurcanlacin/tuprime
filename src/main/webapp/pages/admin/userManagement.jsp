@@ -15,64 +15,65 @@
  .admin-footer{
       margin-top: 32% !important;
 }
+ul li a{
+	color: #424242 ;
+}
 </style>
 </head>
 <body>
 	
 	<jsp:include page="header.jsp"/>
-
-<div class="container">
-      <table class="hoverable">
-        <thead>
-          <tr>
-          	  
-              <th data-field="id">id</th>
-              <th data-field="username">username</th>
-              <th data-field="passwordhash">passwordhash</th>
-              <th data-field="name">name</th>
-              <th data-field="surname">surname</th>
-              <th data-field="email">email</th>
-              <th data-field="active">active</th>
-              <th data-field="creationTimestamp">creationTimestamp</th>
-          </tr>
-        </thead>
-
+	
+	<div class="row">
+		<div class="col s12 m2 l2 "> <!-- Note that "m4 l3" was added -->
+	             <ul class="collection">
+	              <li class="collection-item active"><a href="<c:url value="usermanagement"/>">User Management</a></li>
+	              <li class="collection-item"><a href="<c:url value="usermanagement/adduser"/>">Add User</a></li>
+	              <li class="collection-item"><a href="<c:url value="usermanagement/role"/>">Role</a></li>
+	            </ul>
+		</div>
 		
-        <tbody>
-        <c:forEach items="${users}" var="user">
-		    <tr>
-		        <td>${user.id}</td>
-		        <td>${user.username}</td>
-		        <td>${user.passwordHash}</td>
-		        <td>${user.name}</td>
-		        <td>${user.surname}</td>
-		        <td>${user.email}</td>
-		        <td>${user.active}</td>
-		        <td>${user.creationTimestamp}</td>
-		        <td> <!-- Actions for the individual item -->
-		            <a href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Delete</a>
-		            <a href="<c:url value="/admin/usermanagement/edituser/${user.id}" />">Edit</a>
-		        </td>
-		    </tr>
-		</c:forEach>
-          
-        </tbody>
-        </table>
+		<div class="col s12 m10 l10">
+			<table class="hoverable">
+		        <thead>
+		          <tr>
+		          	  
+		              <th data-field="id">id</th>
+		              <th data-field="username">username</th>
+		              <th data-field="passwordhash">passwordhash</th>
+		              <th data-field="name">name</th>
+		              <th data-field="surname">surname</th>
+		              <th data-field="email">email</th>
+		              <th data-field="active">active</th>
+		              <th data-field="creationTimestamp">creationTimestamp</th>
+		          </tr>
+		        </thead>
+		
+				
+		        <tbody>
+		        <c:forEach items="${users}" var="user">
+				    <tr>
+				        <td>${user.id}</td>
+				        <td>${user.username}</td>
+				        <td>${user.passwordHash}</td>
+				        <td>${user.name}</td>
+				        <td>${user.surname}</td>
+				        <td>${user.email}</td>
+				        <td>${user.active}</td>
+				        <td>${user.creationTimestamp}</td>
+				        <td> <!-- Actions for the individual item -->
+				            <a href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Delete</a>
+				            <a href="<c:url value="/admin/usermanagement/edituser/${user.id}" />">Edit</a>
+				        </td>
+				    </tr>
+				</c:forEach>
+		          
+		        </tbody>
+		        </table>
+			</div>
+      
 </div>
 
-
-	<!-- 
-	<tr>
-            <td>1</td>
-            <td>admin</td>
-            <td>admin</td>
-            <td>ugur</td>
-            <td>lacin</td>
-            <td>admin@admin.com</td>
-            <td>true</td>
-            <td>30-02-2015</td>
-          </tr>
-	 -->
 	<jsp:include page="footer.jsp"/>
 
 

@@ -15,7 +15,9 @@
   .admin-footer{
       margin-top: 5.6% !important;
 	}
-  
+  ul li a{
+  	color:#424242;
+  }
   </style>
   </head>
 <body>
@@ -24,45 +26,53 @@
 
 	
 
-	<div class="container">
-         <div class="row">
-            <form:form  class="col s12" action="adduser" method="post" commandName="userForm">
-              <div class="row">
-                <div class="input-field col s6">
-                  <form:input path="name" id="name"  class="validate" required="required" maxlength="64"/>
-                  <label for="name">Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <form:input path="surname" id="surname"  class="validate" maxlength="64"/>
-                  <label for="surname">Surname</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                   <form:input path="username" id="username"  class="validate" required="required" maxlength="64"/>
-                  <label for="username">Username</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <form:password path="passwordHash" id="password" class="validate" required="required"/>
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <form:input path="email"  id="email" type="email" class="validate" required="required" maxlength="64"/>
-                  <label for="email">Email</label>
-                </div>
-              </div>
-              
-              <button class="btn waves-effect waves-light" type="submit" name="submit">Submit
-                          <i class="mdi-content-send right"></i>
-              </button>
-            </form:form>
-         </div>
-      </div>
-      
+	<div class="row">
+		<div class="col s12 m2 l2 "> <!-- Note that "m4 l3" was added -->
+	             <ul class="collection">
+	              <li class="collection-item "><a href="<c:url value="/admin/usermanagement"/>">User Management</a></li>
+	              <li class="collection-item active"><a href="<c:url value="/admin/usermanagement/adduser"/>">Add User</a></li>
+	              <li class="collection-item"><a href="<c:url value="/admin/usermanagement/role"/>">Role</a></li>
+	            </ul>
+		</div>
+		<div class="col s12 m10 l10">
+	         
+	            <form:form  class="col s12" action="adduser" method="post" commandName="userForm">
+	              <div class="row">
+	                <div class="input-field col s6">
+	                  <form:input path="name" id="name"  class="validate" required="required" maxlength="64"/>
+	                  <label for="name">Name</label>
+	                </div>
+	                <div class="input-field col s6">
+	                  <form:input path="surname" id="surname"  class="validate" maxlength="64"/>
+	                  <label for="surname">Surname</label>
+	                </div>
+	              </div>
+	              <div class="row">
+	                <div class="input-field col s12">
+	                   <form:input path="username" id="username"  class="validate" required="required" maxlength="64"/>
+	                  <label for="username">Username</label>
+	                </div>
+	              </div>
+	              <div class="row">
+	                <div class="input-field col s12">
+	                  <form:password path="passwordHash" id="password" class="validate" required="required"/>
+	                  <label for="password">Password</label>
+	                </div>
+	              </div>
+	              <div class="row">
+	                <div class="input-field col s12">
+	                  <form:input path="email"  id="email" type="email" class="validate" required="required" maxlength="64"/>
+	                  <label for="email">Email</label>
+	                </div>
+	              </div>
+	              
+	              <button class="btn waves-effect waves-light" type="submit" name="submit">Submit
+	                          <i class="mdi-content-send right"></i>
+	              </button>
+	            </form:form>
+	         </div>
+	      </div>
+     
       
       <jsp:include page="footer.jsp"/>
       
