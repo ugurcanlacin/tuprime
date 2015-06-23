@@ -94,11 +94,12 @@ public class UserManagementController {
 		model.addObject("users", allUsers);
 		return model;
 	}
-	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/editrole/{id}", method = RequestMethod.GET)
 	public ModelAndView selectUserForRole(@PathVariable("id") int id) {
 		User userForm = userService.find(id);
 		ModelAndView model = new ModelAndView("admin/editrole");
 		model.addObject("userForm", userForm);
 		return model;
 	}
+	
 }
