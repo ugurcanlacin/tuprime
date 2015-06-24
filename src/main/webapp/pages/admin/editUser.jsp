@@ -27,33 +27,41 @@
 	<div class="container">
          <div class="row">
             <form:form  class="col s12" action="../edituser" method="post" commandName="userForm">
+            
               <div class="row">
                 <div class="input-field col s6">
-                  <form:input path="name" id="name"  class="validate" required="required" maxlength="64" value="${user.name}"/>
+                  <form:input path="name" id="name"  class="validate" required="required" maxlength="64" value="${userForm.name}"/>
                   <label for="name">Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <form:input path="surname" id="surname"  class="validate" maxlength="64"  value="${user.surname}"/>
+                  <form:input path="surname" id="surname"  class="validate" maxlength="64"  value="${userForm.surname}"/>
                   <label for="surname">Surname</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                   <form:input path="username" id="username"  class="validate" required="required" maxlength="64"  value="${user.username}"/>
+                   <form:input path="username" id="username"  class="validate" required="required" maxlength="64"  value="${userForm.username}"/>
                   <label for="username">Username</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <form:input path="email"  id="email" type="email" class="validate" required="required" maxlength="64"  value="${user.mail}"/>
+                  <form:input path="email"  id="email" type="email" class="validate" required="required" maxlength="64"  value="${userForm.email}"/>
                   <label for="email">Email</label>
                 </div>
               </div>
-				<form:hidden path="id" value="${user.id}"/>
-				<form:hidden path="active" value="${user.active}"/>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="checkbox" name="active" id="active" value="true"  <c:if test="${userForm.active}">checked="checked"</c:if> />
+                  
+                  <label for="active">Active</label>
+                </div>
+              </div>
+				<form:hidden path="id" value="${userForm.id}"/>
               <button class="btn waves-effect waves-light" type="submit" name="submit">Submit
                           <i class="mdi-content-send right"></i>
               </button>
+               
             </form:form>
          </div>
       </div>
