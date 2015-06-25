@@ -1,5 +1,6 @@
 package com.ugurcanlacin.sportclubsystem.web.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ugurcanlacin.sportclubsystem.model.Role;
 import com.ugurcanlacin.sportclubsystem.model.User;
+import com.ugurcanlacin.sportclubsystem.service.RoleService;
 import com.ugurcanlacin.sportclubsystem.service.UserService;
+import com.ugurcanlacin.sportclubsystem.util.RoleNames;
 
 @Controller
 @RequestMapping("/admin/usermanagement")
@@ -23,12 +26,24 @@ public class UserManagementController {
 	@Resource(name = "userService")
 	UserService userService;
 
+	@Resource(name = "roleService")
+	RoleService roleService;
+	
+	
 	public UserService getUserService() {
 		return userService;
 	}
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	public RoleService getRoleService() {
+		return roleService;
+	}
+
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
@@ -43,8 +58,12 @@ public class UserManagementController {
 	public ModelAndView proccessAddUser(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("admin/addUserResult");
 		user.setActive(true);
+		List<Role> roleList = new ArrayList<Role>();
+		Role role = roleService.getRoleById(3); // ROLE_USER default.
+		roleList.add(role);
+		user.setRole(roleList);
 		try {
-			userService.persist(user);
+			userService.merge(user);
 			model.addObject("result", "Registration Succeeded!");
 		} catch (Exception e) {
 			model.addObject("result", "Registration Failed!");
