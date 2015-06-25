@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
 	<!-- enable use-expressions -->
-	<http auto-config="true" use-expressions="true">
+	<http auto-config="true" use-expressions="true" disable-url-rewriting="true">
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
  
 		<!-- access denied page -->
