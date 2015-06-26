@@ -94,10 +94,16 @@ public class UserManagementController {
 	@RequestMapping(value = "/edituser", method = RequestMethod.POST)
 	public ModelAndView editUserProccess(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("admin/editUserResult");
-		String password = userService.find(user.getId()).getPasswordHash();
+		User currentUser = userService.find(user.getId());
+		currentUser.setName(user.getName());
+		currentUser.setSurname(user.getSurname());
+		currentUser.setUsername(user.getUsername());
+		currentUser.setEmail(user.getEmail());
+		currentUser.setActive(user.isActive());
+		
+		//name,surname,username,email,active
 		try {
-			user.setPasswordHash(password);
-			userService.update(user);
+			userService.update(currentUser);
 			model.addObject("result", "Edit Succeeded!");
 		} catch (Exception e) {
 			model.addObject("result", "Edit Failed!");
