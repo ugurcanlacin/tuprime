@@ -40,4 +40,11 @@ public class AdminController {
 		model.addObject("users", allUsers);
 		return model;
 	}
+	@RequestMapping("/customermanagement")
+	public ModelAndView getCustomerManagement(){
+		ModelAndView  model = new ModelAndView("admin/customerManagement");
+		List<User> allUsers = userService.getAllUsers();
+		model.addObject("users", allUsers);
+		return model;
+	}
 }

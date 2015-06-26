@@ -41,7 +41,7 @@
       </a>
     </div>
     <div class="col s4 z-depth-3 grey lighten-5 center">
-      <a href="#">
+      <a href="<c:url value="/admin/customermanagement"/>">
         <i class="large mdi-action-account-child"></i>
         <p class="grey-text text-darken-3">Customer Management</p>
       </a>
