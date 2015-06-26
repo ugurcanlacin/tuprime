@@ -59,7 +59,7 @@ public class UserManagementController {
 		ModelAndView model = new ModelAndView("admin/addUserResult");
 		user.setActive(true);
 		List<Role> roleList = new ArrayList<Role>();
-		Role role = roleService.getRoleById(3); // ROLE_USER default.
+		Role role = roleService.getRoleByName(RoleNames.ROLE_USER); // ROLE_USER default.
 		roleList.add(role);
 		user.setRole(roleList);
 		try {
