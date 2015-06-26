@@ -28,9 +28,9 @@
 <div class="row">
 		<div class="col s12 m2 l2 "> <!-- Note that "m4 l3" was added -->
 	             <ul class="collection">
-	              <li class="collection-item "><a href="<c:url value="usermanagement"/>">User Management</a></li>
-	              <li class="collection-item"><a href="<c:url value="usermanagement/adduser"/>">Add User</a></li>
-	              <li class="collection-item active"><a href="<c:url value="usermanagement/role"/>">Role</a></li>
+	              <li class="collection-item "><a href="<%=request.getContextPath()%>/admin/usermanagement">User Management</a></li>
+	              <li class="collection-item"><a href="<%=request.getContextPath()%>/admin/usermanagement/adduser">Add User</a></li>
+	              <li class="collection-item active"><a href="<%=request.getContextPath()%>/admin/usermanagement/role">Role</a></li>
 	            </ul>
 		</div>
 		
