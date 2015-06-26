@@ -62,7 +62,7 @@ ul li a{
 				        <td>${user.active}</td>
 				        <td>${user.creationTimestamp}</td>
 				        <td> <!-- Actions for the individual item -->
-				            <a href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Delete</a>
+				            <a onclick="return confirm('Are you sure you want to delete?')" href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Delete</a>
 				            <a href="<c:url value="/admin/usermanagement/edituser/${user.id}" />">Edit</a>
 				        </td>
 				    </tr>
