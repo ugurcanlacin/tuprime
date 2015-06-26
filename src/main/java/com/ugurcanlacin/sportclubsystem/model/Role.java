@@ -44,11 +44,7 @@ public class Role implements java.io.Serializable {
 	
 	private String role;
 
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="user_roles",
-	joinColumns={@JoinColumn(name="role_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
-	private List<User> user;
+	
 	
 	public Role() {
 	}
@@ -77,13 +73,7 @@ public class Role implements java.io.Serializable {
 		this.role = role;
 	}
 
-	public List<User> getUser() {
-		return user;
-	}
-
-	public void setUser(List<User> user) {
-		this.user = user;
-	}
+	
 
 
 

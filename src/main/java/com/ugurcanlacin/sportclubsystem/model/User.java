@@ -57,7 +57,7 @@ public class User implements java.io.Serializable {
 	private Date creationTimestamp = new Date();
 	private String activationHash;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="user_roles",
 	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})

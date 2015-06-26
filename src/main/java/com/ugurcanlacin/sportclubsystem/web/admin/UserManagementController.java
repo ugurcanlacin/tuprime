@@ -78,7 +78,7 @@ public class UserManagementController {
 		try {
 			userService.delete(user);
 		} catch (Exception e) {
-
+			System.out.println(e);
 		}
 		return "redirect:/admin/usermanagement";
 	}
