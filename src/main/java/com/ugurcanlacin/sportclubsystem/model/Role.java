@@ -29,6 +29,11 @@ import org.hibernate.annotations.NamedQuery;
 			query = "from Role r left join r.user its where its.id = :userid" )
 })
 */
+@NamedQueries({
+	@NamedQuery(name ="getAllRoles" , query="from Role"),
+	@NamedQuery(name = "getRoleByName" , query = "from Role r where r.role =:role")
+	
+})
 @Entity
 @Table(name = "role", catalog = "sportclubsystem")
 public class Role implements java.io.Serializable {

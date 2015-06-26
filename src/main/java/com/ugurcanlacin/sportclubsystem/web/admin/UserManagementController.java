@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,8 +29,7 @@ public class UserManagementController {
 
 	@Resource(name = "roleService")
 	RoleService roleService;
-	
-	
+
 	public UserService getUserService() {
 		return userService;
 	}
@@ -106,19 +106,56 @@ public class UserManagementController {
 		return model;
 	}
 
-	@RequestMapping(value="role",method=RequestMethod.GET)
+	@RequestMapping(value = "role", method = RequestMethod.GET)
 	public ModelAndView roleManagement() {
 		ModelAndView model = new ModelAndView("admin/role");
 		List<User> allUsers = userService.getAllUsers();
 		model.addObject("users", allUsers);
 		return model;
 	}
+
 	@RequestMapping(value = "/editrole/{id}", method = RequestMethod.GET)
 	public ModelAndView selectUserForRole(@PathVariable("id") int id) {
 		User userForm = userService.find(id);
 		ModelAndView model = new ModelAndView("admin/editrole");
 		model.addObject("userForm", userForm);
+		model.addObject("roles", roleService.getAllRoles());
+		List<String> roleList = new ArrayList<String>();
+		List<Role> userRoleList = userForm.getRole();
+		for (Role role : userRoleList) {
+			roleList.add(role.getRole());
+		}
+		model.addObject("usersroleList", roleList);
 		return model;
 	}
-	
+
+	@RequestMapping(value = "/editrole", method = RequestMethod.POST)
+	public ModelAndView editRoleProccess(
+			@ModelAttribute("userForm") User user,
+			@RequestParam(required = false, value = "ROLE_USER") Boolean roleUser,
+			@RequestParam(required = false, value = "ROLE_ADMIN") Boolean roleAdmin,
+			@RequestParam(required = false, value = "ROLE_TRAINER") Boolean roleTrainer) {
+		ModelAndView model = new ModelAndView("admin/editroleresult");
+		user = userService.find(user.getId());
+		List<Role> roleList = new ArrayList<Role>();
+		if(roleUser != null && roleUser == true){
+			roleList.add(roleService.getRoleByName(RoleNames.ROLE_USER));
+		}
+		if(roleAdmin != null && roleAdmin == true){
+			roleList.add(roleService.getRoleByName(RoleNames.ROLE_ADMIN));
+		}
+		if(roleTrainer != null && roleTrainer == true){
+			roleList.add(roleService.getRoleByName(RoleNames.ROLE_TRAINER));
+		}
+		user.setRole(roleList);
+		try {
+			userService.merge(user);
+			model.addObject("result", "Role settings were recorded.");
+		} catch (Exception e) {
+			model.addObject("result", "Role settings failed.");
+		}
+		model.addObject("userForm", user);
+		return model;
+	}
+
 }

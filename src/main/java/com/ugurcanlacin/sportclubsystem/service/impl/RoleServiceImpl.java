@@ -1,5 +1,7 @@
 package com.ugurcanlacin.sportclubsystem.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ugurcanlacin.sportclubsystem.dao.GenericDao;
@@ -25,6 +27,14 @@ public class RoleServiceImpl extends GenericServiceImpl<Role> implements RoleSer
 	@Override
 	public GenericDao<Role> getDao() {
 		return getRoleDao();
+	}
+
+	public List<Role> getAllRoles() {
+		return roleDao.getAllRoles();
+	}
+
+	public Role getRoleByName(String roleName) {
+		return roleDao.getRoleByName(roleName);
 	}
 	
 }
