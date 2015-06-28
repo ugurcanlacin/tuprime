@@ -15,11 +15,10 @@ import com.ugurcanlacin.sportclubsystem.service.UserService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
-	@Resource(name="userService")
+
+	@Resource(name = "userService")
 	UserService userService;
-	
-	
+
 	public UserService getUserService() {
 		return userService;
 	}
@@ -29,22 +28,28 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView getDashboard(){
-		return	new ModelAndView("admin/index");
+	public ModelAndView getDashboard() {
+		return new ModelAndView("admin/index");
 	}
-	
+
 	@RequestMapping("/usermanagement")
-	public ModelAndView getUserManagement(){
-		ModelAndView  model = new ModelAndView("admin/userManagement");
+	public ModelAndView getUserManagement() {
+		ModelAndView model = new ModelAndView("admin/userManagement");
 		List<User> allUsers = userService.getAllUsers();
 		model.addObject("users", allUsers);
 		return model;
 	}
+
 	@RequestMapping("/customermanagement")
-	public ModelAndView getCustomerManagement(){
-		ModelAndView  model = new ModelAndView("admin/customerManagement");
+	public ModelAndView getCustomerManagement() {
+		ModelAndView model = new ModelAndView("admin/customerManagement");
 		List<User> allUsers = userService.getAllUsers();
 		model.addObject("users", allUsers);
 		return model;
+	}
+
+	@RequestMapping("/about")
+	public ModelAndView getAbout() {
+		return new ModelAndView("admin/about");
 	}
 }
