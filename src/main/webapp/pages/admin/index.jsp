@@ -47,7 +47,7 @@
       </a>
     </div>
     <div class="col s4 z-depth-3 grey lighten-5 center">
-      <a href="#">
+      <a href="<c:url value="/admin/about"/>">
         <i class="large mdi-action-bookmark"></i>
         <p class="grey-text text-darken-3">About</p>
       </a>

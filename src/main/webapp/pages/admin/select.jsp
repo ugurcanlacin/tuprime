@@ -24,44 +24,19 @@ ul li a{
 	
 	<jsp:include page="header.jsp"/>
 	<div class="container">
-		<div class="row">
-		<h5 class="center">Please select an user to set user's programs.</h5>
-		</div>
-	
-		<div class="row">
-			<table class="hoverable">
-			        <thead>
-			          <tr>
-			          	  
-			              <th data-field="id">id</th>
-			              <th data-field="username">username</th>
-			              <th data-field="name">name</th>
-			              <th data-field="surname">surname</th>
-			              <th data-field="email">email</th>
-			          </tr>
-			        </thead>
-			
-					
-			        <tbody>
-			        <c:forEach items="${users}" var="user">
-					    <tr>
-					        <td>${user.id}</td>
-					        <td>${user.username}</td>
-					        <td>${user.name}</td>
-					        <td>${user.surname}</td>
-					        <td>${user.email}</td>
-					        <td> <!-- Actions for the individual item -->
-					            <a href="<c:url value="/admin/customermanagement/select/${user.id}" />">Select</a>
-					        </td>
-					    </tr>
-					</c:forEach>
-			          
-			        </tbody>
-			        </table>
-		</div>
+	    <div class="row">
+		    <div class="col s12">
+		      <ul class="tabs">
+		        <li class="tab col s4"><a class="active" href="#test1">Diet</a></li>
+		        <li class="tab col s4"><a href="#test2">Workout</a></li>
+		        <li class="tab col s4"><a href="#test3">Measurement</a></li>
+		      </ul>
+		    </div>
+		    <div id="test1" class="col s12">Test 1</div>
+		    <div id="test2" class="col s12">Test 2</div>
+		    <div id="test3" class="col s12">Test 3</div>
+	  	</div>
 	</div>
-	
-
 	<jsp:include page="footer.jsp"/>
 
 

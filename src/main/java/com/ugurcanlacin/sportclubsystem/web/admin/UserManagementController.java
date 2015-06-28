@@ -25,10 +25,10 @@ import com.ugurcanlacin.sportclubsystem.util.RoleNames;
 public class UserManagementController {
 
 	@Resource(name = "userService")
-	UserService userService;
+	private UserService userService;
 
 	@Resource(name = "roleService")
-	RoleService roleService;
+	private RoleService roleService;
 
 	public UserService getUserService() {
 		return userService;
