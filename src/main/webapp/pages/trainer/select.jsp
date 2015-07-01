@@ -22,7 +22,7 @@ ul li a{
 </head>
 <body>
 	
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="../admin/header.jsp"/>
 	<div class="container">
 	    <div class="row">
 		    <div class="col s12">
@@ -37,7 +37,7 @@ ul li a{
 		    <div id="test3" class="col s12">Test 3</div>
 	  	</div>
 	</div>
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../admin/footer.jsp"/>
 
 
 	<!--  Scripts-->

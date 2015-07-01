@@ -30,7 +30,7 @@ public class CustomerManagementController {
 	@RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
 	public ModelAndView selectUser(@PathVariable("id") int id) {
 		User userForm = userService.find(id);
-		ModelAndView model = new ModelAndView("admin/select");
+		ModelAndView model = new ModelAndView("trainer/select");
 		model.addObject("userForm", userForm);
 		return model;
 	}

@@ -42,7 +42,7 @@ public class AdminController {
 
 	@RequestMapping("/customermanagement")
 	public ModelAndView getCustomerManagement() {
-		ModelAndView model = new ModelAndView("admin/customerManagement");
+		ModelAndView model = new ModelAndView("trainer/customerManagement");
 		List<User> allUsers = userService.getAllUsers();
 		model.addObject("users", allUsers);
 		return model;
