@@ -17,15 +17,5 @@ public class DietDaoImpl extends GenericDaoImpl<Diet> implements DietDao{
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void persistDiet(Diet diet) {
-		sessionFactory.getCurrentSession().persist(diet);
-	}
 
-	public void updateDiet(Diet diet) {
-		sessionFactory.getCurrentSession().update(diet);
-	}
-
-	public void deleteDiet(Diet diet) {
-		sessionFactory.getCurrentSession().delete(diet);
-	}
 }
