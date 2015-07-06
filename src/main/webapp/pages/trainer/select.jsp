@@ -32,7 +32,33 @@ ul li a{
 		        <li class="tab col s4"><a href="#test3">Measurement</a></li>
 		      </ul>
 		    </div>
-		    <div id="test1" class="col s12">Test 1</div>
+		    <div id="test1" class="col s12">
+				<table class="hoverable">
+		        <thead>
+		          <tr>
+		          	  
+		              <th data-field="id">id</th>
+		              <th data-field="diet">diet</th>
+		              <th data-field="timestamp">timestamp</th>
+		            
+		          </tr>
+		        </thead>
+		
+				
+		        <tbody>
+		        <c:forEach items="${userForm.diet}" var="diet">
+				    <tr>
+				        <td>${diet.id}</td>
+				        <td>${diet.diet}</td>
+				        <td>${diet.timestamp}</td>
+				    </tr>
+				</c:forEach>
+		          
+		        </tbody>
+		        </table>
+
+
+			</div>
 		    <div id="test2" class="col s12">Test 2</div>
 		    <div id="test3" class="col s12">Test 3</div>
 	  	</div>
