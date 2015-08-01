@@ -73,8 +73,19 @@ public class Role implements java.io.Serializable {
 		this.role = role;
 	}
 
-	
+	@Override
+	public int hashCode() {
+		return getId();
+	}
 
-
-
+	@Override
+	public boolean equals(Object other) {
+		if (this == other)
+			return true;
+		if (other == null || (this.getClass() != other.getClass())) {
+			return false;
+		}
+		Role guest = (Role) other;
+		return (this.id == guest.getId());
+	}
 }

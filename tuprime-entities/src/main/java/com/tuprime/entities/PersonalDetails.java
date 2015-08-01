@@ -135,5 +135,19 @@ public class PersonalDetails implements java.io.Serializable {
 		this.userList = userList;
 	}
 
+	@Override
+	public int hashCode() {
+		return getId();
+	}
 
+	@Override
+	public boolean equals(Object other) {
+		if (this == other)
+			return true;
+		if (other == null || (this.getClass() != other.getClass())) {
+			return false;
+		}
+		PersonalDetails guest = (PersonalDetails) other;
+		return (this.id == guest.getId());
+	}
 }

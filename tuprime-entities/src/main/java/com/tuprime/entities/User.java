@@ -223,7 +223,19 @@ public class User implements java.io.Serializable {
 		this.personalDetails = personalDetails;
 	}
 
+	@Override
+	public int hashCode() {
+		return getId();
+	}
 	
-	
-
+	@Override
+	public boolean equals(Object other) {
+		if (this == other)
+			return true;
+		if (other == null || (this.getClass() != other.getClass())) {
+			return false;
+		}
+		User guest = (User) other;
+		return (this.id == guest.getId());
+	}
 }
