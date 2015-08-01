@@ -1,13 +1,17 @@
 package com.tuprime.entities;
 
+
 // default package
 // Generated 27.Nis.2015 18:14:25 by Hibernate Tools 4.3.1
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -20,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 
 /**
@@ -29,30 +34,28 @@ import javax.persistence.CascadeType;
 @Table(name = "diet", catalog = "sportclubsystem")
 public class Diet implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	private Integer id;
-
+	
 	private Date timestamp;
 	private String diet;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_diet", joinColumns = {
-			@JoinColumn(name = "diet_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "user_id", referencedColumnName = "id") })
+	
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="user_diet",
+	joinColumns={@JoinColumn(name="diet_id", referencedColumnName="id")},
+	inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
 	private List<User> userList;
-
+	
 	public Diet() {
 	}
 
 	public Diet(String diet) {
 		this.diet = diet;
 	}
+
 
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
@@ -90,12 +93,12 @@ public class Diet implements java.io.Serializable {
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return getId();
 	}
-
+	
 	@Override
 	public boolean equals(Object other) {
 		if (this == other)
