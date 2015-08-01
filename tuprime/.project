@@ -4,6 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>tuprime-business</project>
+		<project>tuprime-web</project>
+		<project>tuprime-security</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,9 +1,7 @@
 package com.tuprime.entities;
 
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +20,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 
 import org.hibernate.annotations.NamedQueries;

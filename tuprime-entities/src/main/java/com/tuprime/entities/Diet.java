@@ -5,13 +5,10 @@ package com.tuprime.entities;
 // Generated 27.Nis.2015 18:14:25 by Hibernate Tools 4.3.1
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -24,7 +21,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 
 /**
