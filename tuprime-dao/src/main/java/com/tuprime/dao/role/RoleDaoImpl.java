@@ -35,6 +35,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Role> getAllRoles() {
 		return sessionFactory.getCurrentSession().getNamedQuery("getAllRoles")
 				.list();

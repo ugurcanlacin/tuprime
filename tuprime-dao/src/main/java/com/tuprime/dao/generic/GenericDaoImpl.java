@@ -25,7 +25,7 @@ public abstract class GenericDaoImpl <T>  implements GenericDao<T>{
 	public GenericDaoImpl(){
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType)t;
-		type = (Class)pt.getActualTypeArguments()[0];
+		type = (Class)pt.getActualTypeArguments()[0];   // What is the point of this??
 		
 	}
 	public void persist(T o) {
@@ -33,6 +33,7 @@ public abstract class GenericDaoImpl <T>  implements GenericDao<T>{
 	}
 
 	public T find(Integer id) {
+		@SuppressWarnings("unchecked")
 		T o = (T) getCurrentSession().get(type, id);
 		return o;
 	}
