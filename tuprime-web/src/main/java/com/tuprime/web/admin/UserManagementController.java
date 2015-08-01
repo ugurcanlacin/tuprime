@@ -19,8 +19,8 @@ import com.tuprime.common.business.role.RoleService;
 import com.tuprime.common.business.user.UserService;
 import com.tuprime.entities.Role;
 import com.tuprime.entities.User;
-import com.tuprime.web.util.RoleNames;
-import com.tuprime.web.util.Tool;
+
+import com.tuprime.web.util.*;
 
 
 @Controller
