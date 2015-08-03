@@ -27,7 +27,7 @@ CREATE TABLE `admin` (
   `username` varchar(64) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `surname` varchar(64) DEFAULT NULL,
+  `surname` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `creation_timestamp` date NOT NULL,
@@ -233,9 +233,9 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL,
-  `passwordhash` varchar(255) DEFAULT NULL,
+  `passwordhash` varchar(255) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `surname` varchar(64) DEFAULT NULL,
+  `surname` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `creationTimestamp` date DEFAULT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +252,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (34,'admin','21232f297a57a5a743894a0e4a801fc3','admin','admin','admin@admin.com',1,'2015-06-26',NULL),(35,'antika','3bf1e3273cf75fae0a6aab88ef8833f2','antika','antika','antika@antika.com',1,'2015-06-26',NULL),(48,'ugur','73481464bac55a6494027e69d0f3937c','ugur','ugur','ugur@ugur.com',1,'2015-06-27',NULL),(49,'banu','2f3b1c44cd7011fce586353f25fd02b8','banu','banu','banu@banu.com',1,'2015-06-27',NULL),(50,'acun','cbfd3d121d4e49e6496e5ab7d6015687','acun','acun','acun@acun.com',0,'2015-06-27',NULL),(51,'kurt','607bd9e56b03d15a257732e044793ff9','kurt','kurt','kurt@kurt.com',1,'2015-08-02',NULL);
+INSERT INTO `user` VALUES (34,'admin','21232f297a57a5a743894a0e4a801fc3','admin','admin','admin@admin.com',1,'2015-06-26',NULL),(35,'antika','3bf1e3273cf75fae0a6aab88ef8833f2','antika','antika','antika@antika.com',1,'2015-06-26',NULL),(48,'ugur','73481464bac55a6494027e69d0f3937c','ugur','ugur','ugur@ugur.com',1,'2015-06-27',NULL),(49,'banu','2f3b1c44cd7011fce586353f25fd02b8','banu','banu','banu@banu.com',1,'2015-06-27',NULL),(50,'acun','cbfd3d121d4e49e6496e5ab7d6015687','acun','acun','acun@acun.com',0,'2015-06-27',NULL),(51,'kurt','607bd9e56b03d15a257732e044793ff9','kurt','kurt','kurt@kurt.com',1,'2015-08-02',NULL),(52,'q','q','q','q','q',1,'2015-03-03',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -421,4 +421,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-04  1:32:54
+-- Dump completed on 2015-08-04  2:31:21
