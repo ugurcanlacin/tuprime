@@ -24,8 +24,9 @@
 				<value>com.tuprime.entities.Role</value>
 				<value>com.tuprime.entities.Workout</value>
 				<value>com.tuprime.entities.Diet</value>
-				<value>com.tuprime.entities.PersonalDetails
-				</value>
+				<value>com.tuprime.entities.PersonalDetails</value>
+				<value>com.tuprime.entities.Exercise</value>
+				<value>com.tuprime.entities.Region</value>
 			</list>
 		</property>
 
@@ -53,24 +54,20 @@
 	<bean id="roleDao" class="com.tuprime.dao.role.RoleDaoImpl">
 		<property name="sessionFactory" ref="hibernate4SessionFactory" />
 	</bean>
-	
 
-	<bean id="userService"
-		class="com.tuprime.business.user.UserServiceImpl">
+
+	<bean id="userService" class="com.tuprime.business.user.UserServiceImpl">
 		<property name="userDao" ref="userDao" />
 	</bean>
-	<bean id="roleService"
-		class="com.tuprime.business.role.RoleServiceImpl">
+	<bean id="roleService" class="com.tuprime.business.role.RoleServiceImpl">
 		<property name="roleDao" ref="roleDao" />
 	</bean>
-	
-	<bean id="userDetailsService"
-		class="com.tuprime.security.UserDetailsServiceImpl">
+
+	<bean id="userDetailsService" class="com.tuprime.security.UserDetailsServiceImpl">
 		<property name="userService" ref="userService" />
 		<property name="roleService" ref="roleService" />
 	</bean>
 
-	<bean id="authenticationService"
-		class="com.tuprime.security.AuthenticationServiceImpl">
+	<bean id="authenticationService" class="com.tuprime.security.AuthenticationServiceImpl">
 	</bean>
 </beans>
