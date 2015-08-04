@@ -14,7 +14,7 @@ import com.tuprime.entities.User;
 public class HomeController {
 
 	
-	@RequestMapping(value = { "/", "/login" })
+	@RequestMapping(value = { "/", "/admin/login" })
 	public ModelAndView getLoginForm(@ModelAttribute User user,
 			@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
@@ -26,5 +26,8 @@ public class HomeController {
 		}
 		return new ModelAndView("admin/login", "message", message);
 	}
-	
+	@RequestMapping(value = { "/redirect", "/qweqwe" })
+	public ModelAndView getLoginForm2() {
+		return new ModelAndView("common/redirect", "message", "");
+	}
 }

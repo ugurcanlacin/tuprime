@@ -6,15 +6,15 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
-	<!-- enable use-expressions -->
-	<http auto-config="true" use-expressions="true" disable-url-rewriting="true">
+ 	<!-- Admin Login -->
+	<http auto-config="true" use-expressions="true" disable-url-rewriting="true" authentication-manager-ref="authenticationManager">
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
- 
-		<!-- access denied page -->
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/404" access="permitAll"/>
 		<access-denied-handler error-page="/404" />
 		<form-login 
-		    login-page="/login" 
-		    default-target-url="/admin/dashboard"
+		    login-page="/" 
+		    default-target-url="/redirect"
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
@@ -22,11 +22,14 @@
 		<!-- enable csrf protection -->
 		<csrf />
 	</http>
- 
+	
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="userDetailsService" >
 			  <password-encoder hash="md5"></password-encoder>
 		</authentication-provider>
+		<authentication-provider user-service-ref="adminDetailsService">
+        	<password-encoder hash="md5"></password-encoder>
+        </authentication-provider>
 	</authentication-manager>
- 
+
 </beans:beans>

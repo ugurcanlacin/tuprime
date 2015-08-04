@@ -27,6 +27,7 @@
 				<value>com.tuprime.entities.PersonalDetails</value>
 				<value>com.tuprime.entities.Exercise</value>
 				<value>com.tuprime.entities.Region</value>
+				<value>com.tuprime.entities.Admin</value>
 			</list>
 		</property>
 
@@ -48,26 +49,69 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernate4SessionFactory" />
 	</bean>
+	
+	<!-- DAO START -->
 	<bean id="userDao" class="com.tuprime.dao.user.UserDaoImpl">
 		<property name="sessionFactory" ref="hibernate4SessionFactory" />
 	</bean>
 	<bean id="roleDao" class="com.tuprime.dao.role.RoleDaoImpl">
 		<property name="sessionFactory" ref="hibernate4SessionFactory" />
 	</bean>
+		<bean id="adminDao" class="com.tuprime.dao.admin.AdminDaoImpl">
+		<property name="sessionFactory" ref="hibernate4SessionFactory" />
+	</bean>
+	<bean id="personalDetailsDao" class="com.tuprime.dao.personaldetails.PersonalDetailsDaoImpl">
+		<property name="sessionFactory" ref="hibernate4SessionFactory" />
+	</bean>
+	<bean id="workoutDao" class="com.tuprime.dao.workout.WorkoutDaoImpl">
+		<property name="sessionFactory" ref="hibernate4SessionFactory" />
+	</bean>
+	<bean id="dietDao" class="com.tuprime.dao.diet.DietDaoImpl">
+		<property name="sessionFactory" ref="hibernate4SessionFactory" />
+	</bean>
+	
+	<!-- DAO END -->
+	
+	
+	<!-- SERVICE START -->
 
-
+	<bean id="adminService"
+		class="com.tuprime.business.admin.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao" />
+	</bean>
 	<bean id="userService" class="com.tuprime.business.user.UserServiceImpl">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="roleService" class="com.tuprime.business.role.RoleServiceImpl">
 		<property name="roleDao" ref="roleDao" />
 	</bean>
+	<bean id="dietService"
+		class="com.tuprime.business.diet.DietServiceImpl">
+		<property name="dietDao" ref="dietDao" />
+	</bean>
+	<bean id="workoutService"
+		class="com.tuprime.business.workout.WorkoutServiceImpl">
+		<property name="workoutDao" ref="workoutDao" />
+	</bean>
+	<bean id="personalDetailsService"
+		class="com.tuprime.business.personaldetails.PersonalDetailsServiceImpl">
+		<property name="personalDetailsDao" ref="personalDetailsDao" />
+	</bean>
 
+	<!-- SERVICE END -->
+
+	<!-- SECURITY START -->
 	<bean id="userDetailsService" class="com.tuprime.security.UserDetailsServiceImpl">
 		<property name="userService" ref="userService" />
 		<property name="roleService" ref="roleService" />
 	</bean>
-
+	<bean id="adminDetailsService"
+		class="com.tuprime.security.AdminDetailsServiceImpl">
+		<property name="adminService" ref="adminService" />
+		<property name="roleService" ref="roleService" />
+	</bean>
 	<bean id="authenticationService" class="com.tuprime.security.AuthenticationServiceImpl">
 	</bean>
+	<!-- SECURITY END -->
+	
 </beans>
