@@ -2,6 +2,7 @@ package com.tuprime.entities;
 
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -64,11 +65,8 @@ public class User implements java.io.Serializable {
 	inverseJoinColumns={@JoinColumn(name="diet_id", referencedColumnName="id")})
 	private Set<Diet> diet;
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinTable(name="user_workout",
-	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="workout_id", referencedColumnName="id")})
-	private Set<Workout> workout;
+	@OneToMany(mappedBy = "user")
+	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="user_pdetails",
@@ -204,12 +202,13 @@ public class User implements java.io.Serializable {
 		this.diet = diet;
 	}
 
-	public Set<Workout> getWorkout() {
-		return workout;
+	
+	public Set<UserWorkout> getUserWorkout() {
+		return userWorkout;
 	}
 
-	public void setWorkout(Set<Workout> workout) {
-		this.workout = workout;
+	public void setUserWorkout(Set<UserWorkout> userWorkout) {
+		this.userWorkout = userWorkout;
 	}
 
 	public Set<PersonalDetails> getPersonalDetails() {

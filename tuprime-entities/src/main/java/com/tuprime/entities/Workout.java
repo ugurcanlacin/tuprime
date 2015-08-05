@@ -1,6 +1,7 @@
 package com.tuprime.entities;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,14 +40,11 @@ public class Workout implements java.io.Serializable {
 
 	private Date timestamp;
 	private String workoutProgram;
-	@Column(name = "assign_by_who", length = 45)
-	private String assignByWho;
+	@Column(name = "creator")
+	private int creator;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_workout", joinColumns = {
-			@JoinColumn(name = "workout_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "user_id", referencedColumnName = "id") })
-	private List<User> userList;
+	@OneToMany(mappedBy = "workout")
+	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "workout_exercise", joinColumns = {
@@ -90,12 +88,14 @@ public class Workout implements java.io.Serializable {
 		this.workoutProgram = workoutProgram;
 	}
 
-	public List<User> getUserList() {
-		return userList;
+
+	
+	public Set<UserWorkout> getUserWorkout() {
+		return userWorkout;
 	}
 
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
+	public void setUserWorkout(Set<UserWorkout> userWorkout) {
+		this.userWorkout = userWorkout;
 	}
 
 	@Override
@@ -114,12 +114,12 @@ public class Workout implements java.io.Serializable {
 		return (this.id == guest.getId());
 	}
 
-	public String getAssignByWho() {
-		return assignByWho;
+	public int getCreator() {
+		return creator;
 	}
 
-	public void setAssignByWho(String assignByWho) {
-		this.assignByWho = assignByWho;
+	public void setCreator(int creator) {
+		this.creator = creator;
 	}
 
 	public Set<Exercise> getExercises() {
