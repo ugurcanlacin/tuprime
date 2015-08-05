@@ -5,7 +5,9 @@ package com.tuprime.entities;
 // Generated 27.Nis.2015 18:14:25 by Hibernate Tools 4.3.1
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,13 +39,8 @@ public class Diet implements java.io.Serializable {
 	private Date timestamp;
 	private String diet;
 
-	
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="user_diet",
-	joinColumns={@JoinColumn(name="diet_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
-	private List<User> userList;
+	@OneToMany(mappedBy = "diet")
+	private Set<UserDiet> userDiet = new HashSet<UserDiet>();
 	
 	public Diet() {
 	}
@@ -82,14 +79,15 @@ public class Diet implements java.io.Serializable {
 		this.diet = diet;
 	}
 
-	public List<User> getUserList() {
-		return userList;
+	
+	public Set<UserDiet> getUserDiet() {
+		return userDiet;
 	}
 
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
+	public void setUserDiet(Set<UserDiet> userDiet) {
+		this.userDiet = userDiet;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return getId();

@@ -29,6 +29,7 @@
 				<value>com.tuprime.entities.Region</value>
 				<value>com.tuprime.entities.Admin</value>
 				<value>com.tuprime.entities.UserWorkout</value>
+				<value>com.tuprime.entities.UserDiet</value>
 			</list>
 		</property>
 

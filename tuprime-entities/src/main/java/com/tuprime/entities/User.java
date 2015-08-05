@@ -59,11 +59,8 @@ public class User implements java.io.Serializable {
 	inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
 	private List<Role> role;
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinTable(name="user_diet",
-	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="diet_id", referencedColumnName="id")})
-	private Set<Diet> diet;
+	@OneToMany(mappedBy = "user")
+	private Set<UserDiet> userDiet = new HashSet<UserDiet>();
 	
 	@OneToMany(mappedBy = "user")
 	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
@@ -194,15 +191,14 @@ public class User implements java.io.Serializable {
 		this.role = role;
 	}
 
-	public Set<Diet> getDiet() {
-		return diet;
+	public Set<UserDiet> getUserDiet() {
+		return userDiet;
 	}
 
-	public void setDiet(Set<Diet> diet) {
-		this.diet = diet;
+	public void setUserDiet(Set<UserDiet> userDiet) {
+		this.userDiet = userDiet;
 	}
 
-	
 	public Set<UserWorkout> getUserWorkout() {
 		return userWorkout;
 	}

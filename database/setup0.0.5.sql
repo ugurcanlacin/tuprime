@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sportclubsystem` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sportclubsystem`;
 -- MySQL dump 10.13  Distrib 5.6.19, for Win32 (x86)
 --
 -- Host: localhost    Database: sportclubsystem
@@ -18,8 +20,6 @@
 --
 -- Table structure for table `admin`
 --
-CREATE DATABASE `sportclubsystem`;
-USE `sportclubsystem`;
 
 DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -88,6 +88,7 @@ CREATE TABLE `diet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `diet` varchar(1000) DEFAULT NULL,
   `timestamp` date NOT NULL,
+  `creator` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -266,8 +267,11 @@ DROP TABLE IF EXISTS `user_diet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_diet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `diet_id` int(11) NOT NULL,
+  `assignby` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `user_d` (`user_id`),
   KEY `diet` (`diet_id`),
   CONSTRAINT `diet` FOREIGN KEY (`diet_id`) REFERENCES `diet` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -426,4 +430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-05 14:12:13
+-- Dump completed on 2015-08-05 14:32:34
