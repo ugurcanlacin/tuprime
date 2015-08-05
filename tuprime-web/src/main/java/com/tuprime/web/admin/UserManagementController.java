@@ -2,6 +2,7 @@ package com.tuprime.web.admin;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,7 +19,6 @@ import com.tuprime.common.business.role.RoleService;
 import com.tuprime.common.business.user.UserService;
 import com.tuprime.entities.Role;
 import com.tuprime.entities.User;
-
 import com.tuprime.web.util.*;
 
 
@@ -60,6 +60,7 @@ public class UserManagementController {
 	public ModelAndView proccessAddUser(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("admin/addUserResult");
 		user.setActive(true);
+		user.setCreationTimestamp(new Date());
 		List<Role> roleList = new ArrayList<Role>();
 		Role role = roleService.getRoleByName(RoleNames.ROLE_USER); // ROLE_USER default.
 		roleList.add(role);

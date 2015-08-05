@@ -50,7 +50,7 @@ public class User implements java.io.Serializable {
 	private String surname;
 	private String email;
 	private boolean active;
-	private Date creationTimestamp = new Date();
+	private Date creationTimestamp;
 	private String activationHash;
 
 	@OneToMany(fetch=FetchType.EAGER)
