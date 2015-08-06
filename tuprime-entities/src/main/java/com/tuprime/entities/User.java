@@ -1,6 +1,5 @@
 package com.tuprime.entities;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +12,7 @@ import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.Embedded;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,14 +26,12 @@ import javax.persistence.CascadeType;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
-
 @NamedQueries({
-	@NamedQuery(name = "getUser", query = "from User u where u.username =:username and u.passwordHash = :password"),
+		@NamedQuery(name = "getUser", query = "from User u where u.username =:username and u.passwordHash = :password"),
 
-	@NamedQuery(name = "getUserId", query = "select u.id from User u where u.username =:username"),
-	@NamedQuery(name = "getAllUsers", query = "from User"),
-	@NamedQuery(name = "loadUser", query = "from User u where u.username =:username")
-})
+		@NamedQuery(name = "getUserId", query = "select u.id from User u where u.username =:username"),
+		@NamedQuery(name = "getAllUsers", query = "from User"),
+		@NamedQuery(name = "loadUser", query = "from User u where u.username =:username") })
 @Entity
 @Table(name = "user", catalog = "sportclubsystem", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "username"),
@@ -43,7 +41,24 @@ public class User implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	private Integer id;
-	
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
+	private List<Role> role;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_login", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "login_id", referencedColumnName = "id") })
+	private Set<Login> login;
+
+	@OneToMany(mappedBy = "user")
+	private Set<UserDiet> userDiet = new HashSet<UserDiet>();
+
+	@OneToMany(mappedBy = "user")
+	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_pdetails", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "pdetails_id", referencedColumnName = "id") })
+	private Set<PersonalDetails> personalDetails;
 	private String username;
 	private String passwordHash;
 	private String name;
@@ -52,27 +67,6 @@ public class User implements java.io.Serializable {
 	private boolean active;
 	private Date creationTimestamp;
 	private String activationHash;
-
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="user_roles",
-	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
-	private List<Role> role;
-	
-	@OneToMany(mappedBy = "user")
-	private Set<UserDiet> userDiet = new HashSet<UserDiet>();
-	
-	@OneToMany(mappedBy = "user")
-	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
-	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinTable(name="user_pdetails",
-	joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="pdetails_id", referencedColumnName="id")})
-	private Set<PersonalDetails> personalDetails;
-	
-	public User() {
-	}
 
 	public User(String username, String passwordHash, String name,
 			String email, boolean active, Date creationTimestamp) {
@@ -98,16 +92,6 @@ public class User implements java.io.Serializable {
 
 	}
 
-
-	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	@Column(name = "username", unique = true, nullable = false, length = 64)
 	public String getUsername() {
 		return this.username;
@@ -123,7 +107,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public void setPasswordHash(String passwordHash) {
-		this.passwordHash =passwordHash;
+		this.passwordHash = passwordHash;
 	}
 
 	@Column(name = "name", nullable = false, length = 64)
@@ -181,7 +165,25 @@ public class User implements java.io.Serializable {
 		this.activationHash = activationHash;
 	}
 
+	public User() {
+	}
 
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Set<Login> getLogin() {
+		return login;
+	}
+
+	public void setLogin(Set<Login> login) {
+		this.login = login;
+	}
 
 	public List<Role> getRole() {
 		return role;
@@ -219,7 +221,7 @@ public class User implements java.io.Serializable {
 	public int hashCode() {
 		return getId();
 	}
-	
+
 	@Override
 	public boolean equals(Object other) {
 		if (this == other)

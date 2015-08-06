@@ -1,6 +1,5 @@
 package com.tuprime.entities;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +12,7 @@ import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,11 +25,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
-
-
-@NamedQueries({
-	@NamedQuery(name = "loadAdmin", query = "from Admin a where a.username =:username")
-})
+@NamedQueries({ @NamedQuery(name = "loadAdmin", query = "from Admin a where a.username =:username") })
 @Entity
 @Table(name = "admin", catalog = "sportclubsystem", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "username"),
@@ -58,7 +54,6 @@ public class Admin implements java.io.Serializable {
 		this.active = active;
 		this.creationTimestamp = creationTimestamp;
 	}
-
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -143,14 +138,15 @@ public class Admin implements java.io.Serializable {
 	public void setActivationHash(String activationHash) {
 		this.activationHash = activationHash;
 	}
-	
-	
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_login", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "login_id", referencedColumnName = "id") })
+	private Set<Login> login;
+
 	private List<Role> role;
 
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="admin_roles",
-	joinColumns={@JoinColumn(name="admin_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "admin_roles", joinColumns = { @JoinColumn(name = "admin_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
 	public List<Role> getRole() {
 		return role;
 	}
@@ -159,5 +155,14 @@ public class Admin implements java.io.Serializable {
 		this.role = role;
 	}
 
-		
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "admin_login", joinColumns = { @JoinColumn(name = "admin_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "login_id", referencedColumnName = "id") })
+	public Set<Login> getLogin() {
+		return login;
+	}
+
+	public void setLogin(Set<Login> login) {
+		this.login = login;
+	}
+
 }

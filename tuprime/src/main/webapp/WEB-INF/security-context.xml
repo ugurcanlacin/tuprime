@@ -15,7 +15,7 @@
 		<form-login 
 		    login-page="/" 
 		    default-target-url="/redirect"
-			authentication-failure-url="/login?error" 
+			authentication-failure-url="/" 
 			username-parameter="username"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout" />
@@ -27,9 +27,9 @@
 		<authentication-provider user-service-ref="userDetailsService" >
 			  <password-encoder hash="md5"></password-encoder>
 		</authentication-provider>
-		<authentication-provider user-service-ref="adminDetailsService">
-        	<password-encoder hash="md5"></password-encoder>
-        </authentication-provider>
+		<authentication-provider user-service-ref="adminDetailsService" >
+			  <password-encoder hash="md5"></password-encoder>
+		</authentication-provider>
 	</authentication-manager>
 
 </beans:beans>

@@ -2,6 +2,7 @@ package com.tuprime.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.tuprime.common.business.admin.AdminService;
 import com.tuprime.common.business.role.RoleService;
 import com.tuprime.entities.Admin;
+import com.tuprime.entities.Login;
 import com.tuprime.entities.Role;
 import com.tuprime.entities.User;
 
@@ -46,20 +48,29 @@ public class AdminDetailsServiceImpl implements UserDetailsService{
 
 		return user;
 	}
+	
+	private Admin getLoadedObjectForLogin(String username){
+		return adminService.loadAdmin(username);
+	}
 
 	private void loadUser(String username) {
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		Admin loadedAdmin = adminService.loadAdmin(username);
-		String password = loadedAdmin.getPasswordHash();
-		enabled = loadedAdmin.isActive();
-		List<Role> roles = loadedAdmin.getRole();
-		for (Object role : roles) {
-			authorities.add(new GrantedAuthorityImpl(((Role) role).getRole()));
+		Admin loadedAdmin = getLoadedObjectForLogin(username);
+		if(loadedAdmin != null){
+			String password = loadedAdmin.getPasswordHash();
+			enabled = loadedAdmin.isActive();
+			List<Role> roles = loadedAdmin.getRole();
+			for (Object role : roles) {
+				authorities.add(new GrantedAuthorityImpl(((Role) role).getRole()));
+			}
+			users.put(username,
+					new org.springframework.security.core.userdetails.User(
+							username, password, enabled, accountNonExpired,
+							credentialsNonExpired, accountNonLocked, authorities));
+			loadedAdmin.getLogin().add(new Login(new Date()));
+			adminService.merge(loadedAdmin);
 		}
-		users.put(username,
-				new org.springframework.security.core.userdetails.User(
-						username, password, enabled, accountNonExpired,
-						credentialsNonExpired, accountNonLocked, authorities));
+		
 	}
 
 
