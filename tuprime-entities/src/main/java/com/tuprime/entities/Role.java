@@ -79,4 +79,9 @@ public class Role implements java.io.Serializable {
 		Role guest = (Role) other;
 		return (this.id == guest.getId());
 	}
+	
+	@Override
+	public String toString() {
+		return getRole();
+	}
 }

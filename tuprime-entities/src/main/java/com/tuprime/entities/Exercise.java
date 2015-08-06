@@ -82,5 +82,9 @@ public class Exercise implements java.io.Serializable {
 	public void setWorkouts(Set<Workout> workouts) {
 		this.workouts = workouts;
 	}
-
+	
+	@Override
+	public String toString() {
+		return getExercise();
+	}
 }

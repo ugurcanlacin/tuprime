@@ -67,4 +67,8 @@ public class Region implements java.io.Serializable {
 		this.exerciseList = exerciseList;
 	}
 
+	@Override
+	public String toString() {
+		return getRegion();
+	}
 }
