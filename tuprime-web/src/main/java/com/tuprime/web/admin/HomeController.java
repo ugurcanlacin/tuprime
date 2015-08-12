@@ -24,7 +24,7 @@ public class HomeController {
 		} else if (logout != null) {
 			message = "Logout successful !";
 		}
-		return new ModelAndView("admin/login2", "message", message);
+		return new ModelAndView("admin/login", "message", message);
 	}
 	@RequestMapping(value = { "/redirect", "/qweqwe" })
 	public ModelAndView getLoginForm2() {
