@@ -31,7 +31,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView getDashboard() {
-		return new ModelAndView("admin/index");
+		return new ModelAndView("admin/index2");
 	}
 
 	@RequestMapping("/usermanagement")
