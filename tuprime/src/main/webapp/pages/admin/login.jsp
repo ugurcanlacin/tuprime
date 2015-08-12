@@ -30,7 +30,7 @@
         <a href="../../index2.html"><b>Tu</b>Prime</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Giriş Ekranı</p>
         <form action="<c:url value='/j_spring_security_check' />" method="post" name='loginForm' > 
           <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="Username" name='username' id="username">
@@ -44,12 +44,12 @@
             <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> Remember Me
+                  <input type="checkbox"> Beni Hatırla
                 </label>
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Giriş</button>
             </div><!-- /.col -->
           </div>
           <input type="hidden" name="${_csrf.parameterName}"
@@ -57,8 +57,7 @@
         </form>
 
 
-        <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="#">Şifremi Unuttum</a><br>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
