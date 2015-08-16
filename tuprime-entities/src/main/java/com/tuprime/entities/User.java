@@ -30,8 +30,10 @@ import org.hibernate.annotations.NamedQuery;
 		@NamedQuery(name = "getUser", query = "from User u where u.username =:username and u.passwordHash = :password"),
 
 		@NamedQuery(name = "getUserId", query = "select u.id from User u where u.username =:username"),
-		@NamedQuery(name = "getAllUsers", query = "from User"),
-		@NamedQuery(name = "loadUser", query = "from User u where u.username =:username") })
+		@NamedQuery(name = "getAllUsers", query = "from User u where u.state=1"),
+		@NamedQuery(name = "loadUser", query = "from User u where u.username =:username"),
+		@NamedQuery(name = "changeState",query="UPDATE User u SET u.state='2' WHERE u.id=:id")
+		})
 @Entity
 @Table(name = "user", catalog = "sportclubsystem", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "username"),
@@ -67,6 +69,7 @@ public class User implements java.io.Serializable {
 	private boolean active;
 	private Date creationTimestamp;
 	private String activationHash;
+	private int state;
 
 	public User(String username, String passwordHash, String name,
 			String email, boolean active, Date creationTimestamp) {
@@ -175,6 +178,15 @@ public class User implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	@Column(name = "state",length=45)
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 	public Set<Login> getLogin() {

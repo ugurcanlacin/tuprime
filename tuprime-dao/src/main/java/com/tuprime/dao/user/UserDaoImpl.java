@@ -1,6 +1,5 @@
 package com.tuprime.dao.user;
 
-
 import java.util.List;
 
 import org.hibernate.Query;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tuprime.common.dao.user.UserDao;
 import com.tuprime.dao.generic.GenericDaoImpl;
 import com.tuprime.entities.User;
-
 
 @Transactional
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
@@ -33,18 +31,23 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
 	public User getUser(String username, String password) {
 		User u = loadUser(username);
-		u = (User) sessionFactory.getCurrentSession().get(User.class, u.getId());
-		if(u.getPasswordHash().equals(password))
+		u = (User) sessionFactory.getCurrentSession()
+				.get(User.class, u.getId());
+		if (u.getPasswordHash().equals(password))
 			return u;
 		else
 			return null;
 	}
 
 	public List<User> getAllUsers() {
-		return sessionFactory.getCurrentSession().getNamedQuery("getAllUsers").list();
+		return sessionFactory.getCurrentSession().getNamedQuery("getAllUsers")
+				.list();
 	}
 
-
-
 	
+	public void deleteUser(int id) {
+		sessionFactory.getCurrentSession()
+				.getNamedQuery("changeState").setParameter("id", id).executeUpdate();
+	}
+
 }

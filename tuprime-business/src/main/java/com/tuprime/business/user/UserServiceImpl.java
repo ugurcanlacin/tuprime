@@ -42,5 +42,9 @@ public class UserServiceImpl extends GenericServiceImpl<User> implements UserSer
 	public GenericDao<User> getDao() {
 		return userDao;
 	}
+	@Override
+	public void deleteUser(int id) {
+		userDao.deleteUser(id);
+	}
 
 }

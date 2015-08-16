@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `sportclubsystem` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sportclubsystem`;
--- MySQL dump 10.13  Distrib 5.6.19, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.25, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: sportclubsystem
 -- ------------------------------------------------------
--- Server version	5.6.22-enterprise-commercial-advanced-log
+-- Server version	5.6.25-0ubuntu0.15.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,6 +48,33 @@ LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` VALUES (1,'admin','21232f297a57a5a743894a0e4a801fc3','admin','admin','admin@admin.com',1,'2015-06-26','');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin_login`
+--
+
+DROP TABLE IF EXISTS `admin_login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_login` (
+  `admin_id` int(11) NOT NULL,
+  `login_id` int(11) NOT NULL,
+  KEY `admin_l` (`admin_id`),
+  KEY `login_a` (`login_id`),
+  CONSTRAINT `admin_l` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `login_a` FOREIGN KEY (`login_id`) REFERENCES `login` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_login`
+--
+
+LOCK TABLES `admin_login` WRITE;
+/*!40000 ALTER TABLE `admin_login` DISABLE KEYS */;
+INSERT INTO `admin_login` VALUES (1,5),(1,6),(1,7),(1,8),(1,9),(1,10);
+/*!40000 ALTER TABLE `admin_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -152,6 +179,30 @@ LOCK TABLES `exercise_region` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `login`
+--
+
+LOCK TABLES `login` WRITE;
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+INSERT INTO `login` VALUES (1,'2015-08-06 03:33:36'),(2,'2015-08-06 03:36:35'),(3,'2015-08-06 19:11:53'),(4,'2015-08-06 19:12:21'),(5,'2015-08-06 19:14:40'),(6,'2015-08-16 05:08:11'),(7,'2015-08-16 05:17:08'),(8,'2015-08-16 05:18:47'),(9,'2015-08-16 05:27:16'),(10,'2015-08-16 16:35:24');
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `personal_details`
 --
 
@@ -241,12 +292,13 @@ CREATE TABLE `user` (
   `surname` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
-  `creationTimestamp` date DEFAULT NULL,
+  `creationTimestamp` datetime DEFAULT NULL,
   `activationhash` varchar(40) DEFAULT NULL,
+  `state` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +307,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (34,'admin','21232f297a57a5a743894a0e4a801fc3','admin','admin','admin@admin.com',1,'2015-06-26',NULL),(35,'antika','3bf1e3273cf75fae0a6aab88ef8833f2','antika','antika','antika@antika.com',1,'2015-06-26',NULL),(48,'ugur','73481464bac55a6494027e69d0f3937c','ugur','ugur','ugur@ugur.com',1,'2015-06-27',NULL),(49,'banu','2f3b1c44cd7011fce586353f25fd02b8','banu','banu','banu@banu.com',1,'2015-06-27',NULL),(50,'acun','cbfd3d121d4e49e6496e5ab7d6015687','acun','acun','acun@acun.com',0,'2015-06-27',NULL),(51,'kurt','607bd9e56b03d15a257732e044793ff9','kurt','kurt','kurt@kurt.com',1,'2015-08-02',NULL),(52,'q','q','q','q','q',1,'2015-03-03',NULL);
+INSERT INTO `user` VALUES (35,'antika','3bf1e3273cf75fae0a6aab88ef8833f2','antika','antika','antika@antika.com',1,'2015-06-26 00:00:00',NULL,1),(48,'ugur','73481464bac55a6494027e69d0f3937c','ugur','ugur','ugur@ugur.com',1,'2015-06-27 00:00:00',NULL,1),(49,'banu','2f3b1c44cd7011fce586353f25fd02b8','banu','banu','banu@banu.com',1,'2015-06-27 00:00:00',NULL,1),(50,'acun','cbfd3d121d4e49e6496e5ab7d6015687','acun','acun','acun@acun.com',0,'2015-06-27 00:00:00',NULL,1),(51,'kurt','607bd9e56b03d15a257732e044793ff9','kurt','kurt','kurt@kurt.com',1,'2015-08-02 00:00:00',NULL,1),(52,'q','q','q','q','q',1,'2015-03-03 00:00:00',NULL,2),(53,'anlam','2bdba82a49aa4527540953ff164d0659','anlam','anlam','anlam@anlam.com',1,'2015-08-05 00:00:00',NULL,2),(54,'min','d8bd79cc131920d5de426f914d17405a','min','min','min@min.com',1,'2015-08-05 16:27:33',NULL,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,6 +338,33 @@ CREATE TABLE `user_diet` (
 LOCK TABLES `user_diet` WRITE;
 /*!40000 ALTER TABLE `user_diet` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_diet` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_login`
+--
+
+DROP TABLE IF EXISTS `user_login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_login` (
+  `user_id` int(11) NOT NULL,
+  `login_id` int(11) NOT NULL,
+  KEY `user_l` (`user_id`),
+  KEY `login` (`login_id`),
+  CONSTRAINT `login` FOREIGN KEY (`login_id`) REFERENCES `login` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_l` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_login`
+--
+
+LOCK TABLES `user_login` WRITE;
+/*!40000 ALTER TABLE `user_login` DISABLE KEYS */;
+INSERT INTO `user_login` VALUES (51,1),(51,2),(51,3);
+/*!40000 ALTER TABLE `user_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -337,7 +416,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (34,1),(35,3),(48,2),(49,2),(50,2),(51,2);
+INSERT INTO `user_roles` VALUES (35,3),(48,2),(49,2),(50,2),(51,2),(53,2),(54,2);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,4 +509,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-05 14:32:34
+-- Dump completed on 2015-08-16 16:36:57

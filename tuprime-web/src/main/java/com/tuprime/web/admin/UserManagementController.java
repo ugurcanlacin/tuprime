@@ -79,9 +79,8 @@ public class UserManagementController {
 
 	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable("id") int id) {
-		User user = userService.find(id);
 		try {
-			userService.delete(user);
+			userService.deleteUser(id);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
