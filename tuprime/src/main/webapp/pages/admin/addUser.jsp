@@ -51,8 +51,8 @@
           </section>
           	<p>
           	  <a class="btn btn-default" href="<c:url value="/admin/usermanagement"/>">Kullanıcılar</a>
-              <a class="btn bg-olive margin" href="<c:url value="usermanagement/adduser"/>">Kullanıcı Ekle</a>
-              <a class="btn btn-default" href="<c:url value="usermanagement/role"/>">Yetkileri Yönet</a>
+              <a class="btn bg-olive margin" href="<c:url value="/admin/usermanagement/adduser"/>">Kullanıcı Ekle</a>
+              <a class="btn btn-default" href="<c:url value="/admin/usermanagement/role"/>">Yetkileri Yönet</a>
             </p>
 		  <!-- Main content -->
 	        <section class="content">
