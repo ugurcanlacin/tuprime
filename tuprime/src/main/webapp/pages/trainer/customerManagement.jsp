@@ -68,6 +68,7 @@
 				              <th data-field="name">İsim</th>
 				              <th data-field="surname">Soyisim</th>
 				              <th data-field="email">Email</th>
+				              <th>İşlemler</th>
 	                      </tr>
 	                    </thead>
 	                    <tbody>
@@ -91,6 +92,7 @@
 				              <th data-field="name">İsim</th>
 				              <th data-field="surname">Soyisim</th>
 				              <th data-field="email">Email</th>
+				              <th>İşlemler</th>
 	                      </tr>
 	                    </tfoot>
 	                  </table>
