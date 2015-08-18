@@ -14,7 +14,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
               <ul class="nav navbar-nav">
-                <li><a href="#">Kullanıcı Yönetimi</a></li>
+                <li class="dropdown">
+                  <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">Kullanıcı Yönetimi <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="<c:url value="/admin/usermanagement"/>">Kullanıcı Listesi</a></li>
+                    <li><a href="<c:url value="/admin/usermanagement/adduser"/>">Kullanıcı Ekle</a></li>
+                    <li><a href="<c:url value="/admin/usermanagement/role"/>">Yetkileri Yönet</a></li>
+                  </ul>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Müşteri Yönetimi <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">

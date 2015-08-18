@@ -50,7 +50,7 @@
             </ol>
           </section>
           	<p>
-          	  <a class="btn bg-olive margin" href="<c:url value="/admin/usermanagement"/>">Kullanıcılar</a>
+          	  <a class="btn bg-olive margin" href="<c:url value="/admin/usermanagement"/>">Kullanıcı Listesi</a>
               <a class="btn btn-default" href="<c:url value="/admin/usermanagement/adduser"/>">Kullanıcı Ekle</a>
               <a class="btn btn-default" href="<c:url value="/admin/usermanagement/role"/>">Yetkileri Yönet</a>
             </p>

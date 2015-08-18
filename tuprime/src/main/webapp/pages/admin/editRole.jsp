@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -19,9 +21,6 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<c:url value="/admin-lte/dist/css/skins/_all-skins.min.css" />">
-    <!-- DATA TABLES -->
-    <link href="<c:url value="/admin-lte/plugins/datatables/dataTables.bootstrap.css" />" rel="stylesheet" type="text/css" />
-    
     
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,73 +42,64 @@
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
-              Kullanıcı Yönetimi
+              Yetki Güncelle
             </h1>
             <ol class="breadcrumb">
               <li><a href="<c:url value="/admin/dashboard"/>"><i class="fa fa-dashboard"></i> Anasayfa</a></li>
               <li><a href="<c:url value="/admin/usermanagement"/>">Kullanıcı Yönetimi</a></li>
+              <li><a href="<c:url value="/admin/usermanagement/editrole/${userForm.id}"/>">Yetki Güncelle</a></li>
             </ol>
           </section>
           	<p>
-          	  <a class="btn bg-olive margin" href="<c:url value="/admin/usermanagement"/>">Kullanıcı Listesi</a>
+          	  <a class="btn btn-default" href="<c:url value="/admin/usermanagement"/>">Kullanıcı Listesi</a>
               <a class="btn btn-default" href="<c:url value="/admin/usermanagement/adduser"/>">Kullanıcı Ekle</a>
-              <a class="btn btn-default" href="<c:url value="/admin/usermanagement/role"/>">Yetkileri Yönet</a>
+              <a class="btn bg-olive margin" href="<c:url value="/admin/usermanagement/role"/>">Yetkileri Yönet</a>
             </p>
 		  <!-- Main content -->
 	        <section class="content">
 	          <div class="row">
-	            <div class="col-xs-12">
-	   
-	              <div class="box">
-	                <div class="box-header">
-	                </div><!-- /.box-header -->
-	                <div class="box-body">
-	                  <table id="example1" class="table table-bordered table-striped">
-	                    <thead>
-	                      <tr>
-		                      <th data-field="id">Id</th>
-				              <th data-field="username">Kullanıcı Adı</th>
-				              <th data-field="name">İsim</th>
-				              <th data-field="surname">Soyisim</th>
-				              <th data-field="email">Email</th>
-				              <th data-field="active">Aktiflik</th>
-				              <th data-field="creationTimestamp">Oluşturulma Tarihi</th>
-				              <th>İşlemler</th>
-	                      </tr>
-	                    </thead>
-	                    <tbody>
-		                    <c:forEach items="${users}" var="user">
-							    <tr>
-							        <td>${user.id}</td>
-							        <td>${user.username}</td>
-							        <td>${user.name}</td>
-							        <td>${user.surname}</td>
-							        <td>${user.email}</td>
-							        <td>${user.active}</td>
-							        <td>${user.creationTimestamp}</td>
-							        <td> <!-- Actions for the individual item -->
-							            <a onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiz?')" href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Sil</a>
-							            <a href="<c:url value="/admin/usermanagement/edituser/${user.id}" />">Güncelle</a>
-							        </td>
-							    </tr>
-							</c:forEach>
-	                    </tbody>
-	                    <tfoot>
-	                      <tr>
-		                      <th data-field="id">Id</th>
-				              <th data-field="username">Kullanıcı Adı</th>
-				              <th data-field="name">İsim</th>
-				              <th data-field="surname">Soyisim</th>
-				              <th data-field="email">Email</th>
-				              <th data-field="active">Aktiflik</th>
-				              <th data-field="creationTimestamp">Oluşturulma Tarihi</th>
-				              <th>İşlemler</th>
-	                      </tr>
-	                    </tfoot>
-	                  </table>
-	                </div><!-- /.box-body -->
-	              </div><!-- /.box -->
-	            </div><!-- /.col -->
+	           <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Kullanıcı Bilgileri</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form:form class="form-horizontal" action="../editrole" method="post" commandName="userForm">
+                  <div class="box-body">
+                    <div class="form-group">
+	                    <label for="id" class="col-sm-2 control-label">Id</label>
+	                    <div class="col-sm-4">
+	   						<form:input disabled="true" path="id" id="id"  class="form-control" required="required" maxlength="64" value="${userForm.id}"/>
+	                    </div>
+                    	<label for="username" class="col-sm-2 control-label">Kullanıcı Adı</label>
+	                    <div class="col-sm-4">
+	   						<form:input disabled="true" path="username" id="username"  class="form-control" required="required" maxlength="64" value="${userForm.username}"/>
+	                    </div>
+                    </div>
+                    <div class="form-group">
+                    	<label for=email class="col-sm-2 control-label">Email</label>
+	                    <div class="col-sm-4">
+	   						<form:input disabled="true" path="email" id="email"  class="form-control" required="required" maxlength="64" value="${userForm.email}"/>
+	                    </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                          <c:forEach items="${roles}" var="role">
+		                  		<input type="checkbox" name="${role.role}" id="${role.role}" value="true" <c:if test='${  fn:contains( usersroleList,role.role) }'>checked="checked"</c:if> />
+		                  		<label for="${role.role}">${role.role}</label>
+		                  		<br>
+		                  </c:forEach>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- /.box-body -->
+                  <form:hidden path="id" value="${userForm.id}"/>
+                  <div class="box-footer">
+                    <a type="submit" class="btn btn-default" href="<c:url value="/admin/usermanagement"/>">İptal</a>
+                    <button type="submit" class="btn btn-info pull-right">Güncelle</button>
+                  </div><!-- /.box-footer -->
+                </form:form>
+              </div>
 	          </div><!-- /.row -->
 	        </section><!-- /.content -->
 	      </div><!-- /.content-wrapper -->
@@ -131,15 +121,6 @@
     <script src='<c:url value="/admin-lte/dist/js/app.min.js"/>'></script>
     <!-- AdminLTE for demo purposes -->
     <script src='<c:url value="/admin-lte/dist/js/demo.js"/>'></script>
-    <!-- DATA TABES SCRIPT -->
-    <script src="<c:url value="/admin-lte/plugins/datatables/jquery.dataTables.min.js"/>" type="text/javascript"></script>
-    <script src="<c:url value="/admin-lte/plugins/datatables/dataTables.bootstrap.min.js"/>" type="text/javascript"></script>
-    <!-- page script -->
-    <script type="text/javascript">
-      $(function () {
-        $("#example1").DataTable();
-      });
-    </script>
     
   </body>
 </html>

@@ -126,7 +126,7 @@ public class UserManagementController {
 	@RequestMapping(value = "/editrole/{id}", method = RequestMethod.GET)
 	public ModelAndView selectUserForRole(@PathVariable("id") int id) {
 		User userForm = userService.find(id);
-		ModelAndView model = new ModelAndView("admin/editrole");
+		ModelAndView model = new ModelAndView("admin/editRole");
 		model.addObject("userForm", userForm);
 		model.addObject("roles", roleService.getAllRoles());
 		List<String> roleList = new ArrayList<String>();
