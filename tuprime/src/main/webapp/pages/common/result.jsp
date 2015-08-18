@@ -46,7 +46,7 @@
   <body class="skin-blue layout-top-nav">
     <div class="wrapper">
 
-   	  <jsp:include page="../common/header.jsp"/>
+   	  <jsp:include page="header.jsp"/>
       
       <!-- Full Width Column -->
       <div class="content-wrapper">
@@ -73,7 +73,7 @@
           <!-- Main content end -->
         </div><!-- /.container -->
       </div><!-- /.content-wrapper -->
-      <jsp:include page="../common/footer.jsp"/>
+      <jsp:include page="footer.jsp"/>
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->

@@ -58,7 +58,7 @@ public class UserManagementController {
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public ModelAndView proccessAddUser(@ModelAttribute("userForm") User user) {
-		ModelAndView model = new ModelAndView("admin/addUserResult");
+		ModelAndView model = new ModelAndView("common/result");
 		user.setActive(true);
 		user.setCreationTimestamp(new Date());
 		List<Role> roleList = new ArrayList<Role>();
@@ -97,7 +97,7 @@ public class UserManagementController {
 
 	@RequestMapping(value = "/edituser", method = RequestMethod.POST)
 	public ModelAndView editUserProccess(@ModelAttribute("userForm") User user) {
-		ModelAndView model = new ModelAndView("admin/editUserResult");
+		ModelAndView model = new ModelAndView("common/result");
 		User currentUser = userService.find(user.getId());
 		currentUser.setName(user.getName());
 		currentUser.setSurname(user.getSurname());
@@ -105,12 +105,11 @@ public class UserManagementController {
 		currentUser.setEmail(user.getEmail());
 		currentUser.setActive(user.isActive());
 		
-		//name,surname,username,email,active
 		try {
 			userService.update(currentUser);
-			model.addObject("result", "Edit Succeeded!");
+			model.addObject("result", "Güncelleme başarıyla tamamlandı!");
 		} catch (Exception e) {
-			model.addObject("result", "Edit Failed!");
+			model.addObject("result", "Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
 		model.addObject("userForm", user);
 		return model;
@@ -145,7 +144,7 @@ public class UserManagementController {
 			@RequestParam(required = false, value = "ROLE_USER") Boolean roleUser,
 			@RequestParam(required = false, value = "ROLE_ADMIN") Boolean roleAdmin,
 			@RequestParam(required = false, value = "ROLE_TRAINER") Boolean roleTrainer) {
-		ModelAndView model = new ModelAndView("admin/editroleresult");
+		ModelAndView model = new ModelAndView("common/result");
 		user = userService.find(user.getId());
 		List<Role> roleList = new ArrayList<Role>();
 		if(roleUser != null && roleUser == true){
@@ -160,9 +159,9 @@ public class UserManagementController {
 		user.setRole(roleList);
 		try {
 			userService.merge(user);
-			model.addObject("result", "Role settings were recorded.");
+			model.addObject("result", "Yetki ayarları başarıyla kaydedildi.");
 		} catch (Exception e) {
-			model.addObject("result", "Role settings failed.");
+			model.addObject("result", "Yetki ayarları kaydı başarısız oldu.Lütfen tekrar deneyiniz.");
 		}
 		model.addObject("userForm", user);
 		return model;
