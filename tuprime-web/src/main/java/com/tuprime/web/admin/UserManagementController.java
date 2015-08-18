@@ -69,9 +69,9 @@ public class UserManagementController {
 		user.setPasswordHash(password);
 		try {
 			userService.merge(user);
-			model.addObject("result", "Registration Succeeded!");
+			model.addObject("result", "Kayıt başarılıyla tamamlandı!");
 		} catch (Exception e) {
-			model.addObject("result", "Registration Failed!");
+			model.addObject("result", "Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
 		model.addObject("userForm", user);
 		return model;
