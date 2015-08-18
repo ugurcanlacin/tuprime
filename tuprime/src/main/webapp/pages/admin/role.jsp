@@ -87,7 +87,7 @@
 							        	</c:forEach>
 							        </td>
 							        <td> 
-							            <a href="<c:url value="/admin/usermanagement/editrole/${user.id}" />">Güncelle</a>
+							            <a class="btn btn-warning" href="<c:url value="/admin/usermanagement/editrole/${user.id}" />">Güncelle</a>
 							        </td>
 							    </tr>
 							</c:forEach>

@@ -80,7 +80,7 @@
 							        <td>${user.surname}</td>
 							        <td>${user.email}</td>
 							        <td> <!-- Actions for the individual item -->
-							            <a href="<c:url value="/admin/customermanagement/select/${user.id}" />">Seç</a>
+							            <a class ="btn btn-success" href="<c:url value="/admin/customermanagement/select/${user.id}" />">Seç</a>
 							        </td>
 							    </tr>
 							</c:forEach>

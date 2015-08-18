@@ -1,75 +1,78 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Management</title>
-<link href="<c:url value="/resources/css/materialize.css" />"
-	type="text/css" rel="stylesheet" media="screen,projection" />
-<link href="<c:url value="/resources/css/style.css" />" type="text/css"
-	rel="stylesheet" media="screen,projection" />
-<style type="text/css">
- .admin-footer{
-      margin-top: 32% !important;
-}
-ul li a{
-	color: #424242 ;
-}
-</style>
-</head>
-<body>
-	
-	<jsp:include page="../admin/header.jsp"/>
-	<div class="container">
-	    <div class="row">
-		    <div class="col s12">
-		      <ul class="tabs">
-		        <li class="tab col s4"><a class="active" href="#test1">Diet</a></li>
-		        <li class="tab col s4"><a href="#test2">Workout</a></li>
-		        <li class="tab col s4"><a href="#test3">Measurement</a></li>
-		      </ul>
-		    </div>
-		    <div id="test1" class="col s12">
-				<table class="hoverable">
-		        <thead>
-		          <tr>
-		          	  
-		              <th data-field="id">id</th>
-		              <th data-field="diet">diet</th>
-		              <th data-field="timestamp">timestamp</th>
-		            
-		          </tr>
-		        </thead>
-		
-				
-		        <tbody>
-		        <c:forEach items="${userForm.diet}" var="diet">
-				    <tr>
-				        <td>${diet.id}</td>
-				        <td>${diet.diet}</td>
-				        <td>${diet.timestamp}</td>
-				    </tr>
-				</c:forEach>
-		          
-		        </tbody>
-		        </table>
+  <head>
+    <meta charset="UTF-8">
+    <title>TuPrime | Anasayfa</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.4 -->
+    <link rel="stylesheet" href="<c:url value="/admin-lte/bootstrap/css/bootstrap.min.css" />">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<c:url value="/admin-lte/dist/css/AdminLTE.min.css" />">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<c:url value="/admin-lte/dist/css/skins/_all-skins.min.css" />">
+    
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+  <body class="skin-blue layout-top-nav">
+    <div class="wrapper">
 
-			</div>
-		    <div id="test2" class="col s12">Test 2</div>
-		    <div id="test3" class="col s12">Test 3</div>
-	  	</div>
-	</div>
-	<jsp:include page="../admin/footer.jsp"/>
+   	  <jsp:include page="../common/header.jsp"/>
+      
+      <!-- Full Width Column -->
+      <div class="content-wrapper">
+        <div class="container">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <h1>
+              Müşteri Yönetimi
+            </h1>
+            <ol class="breadcrumb">
+              <li><a href="<c:url value="/admin/dashboard"/>"><i class="fa fa-dashboard"></i> Anasayfa</a></li>
+              <li><a href="<c:url value="/admin/customermanagement"/>">Müşteri Yönetimi</a></li>
+            </ol>
+          </section>
+		  <!-- Main content -->
+	        <section class="content">
+	          <div class="row">
+	           
+	           
+	           
+	          </div><!-- /.row -->
+	        </section><!-- /.content -->
+	      </div><!-- /.content-wrapper -->
+          <!-- Main content end -->
+        </div><!-- /.container -->
+      </div><!-- /.content-wrapper -->
+      <jsp:include page="../common/footer.jsp"/>
+    </div><!-- ./wrapper -->
 
-
-	<!--  Scripts-->
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="<c:url value="/resources/js/materialize.js" />"></script>
-	<script src="<c:url value="/resources/js/init.js" />"></script>
-
-</body>
+    <!-- jQuery 2.1.4 -->
+    <script src='<c:url value="/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js"/>'></script>
+    <!-- Bootstrap 3.3.4 -->
+    <script src='<c:url value="/admin-lte/bootstrap/js/bootstrap.min.js"/>'></script>
+    <!-- SlimScroll -->
+    <script src='<c:url value="/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"/>'></script>
+    <!-- FastClick -->
+    <script src='<c:url value="/admin-lte/plugins/fastclick/fastclick.min.js"/>'></script>
+    <!-- AdminLTE App -->
+    <script src='<c:url value="/admin-lte/dist/js/app.min.js"/>'></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src='<c:url value="/admin-lte/dist/js/demo.js"/>'></script>
+  </body>
 </html>

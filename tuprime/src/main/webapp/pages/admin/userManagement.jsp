@@ -88,8 +88,8 @@
 							        <td>${user.active}</td>
 							        <td>${user.creationTimestamp}</td>
 							        <td> <!-- Actions for the individual item -->
-							            <a onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiz?')" href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Sil</a>
-							            <a href="<c:url value="/admin/usermanagement/edituser/${user.id}" />">Güncelle</a>
+							            <a class="btn btn-danger" onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiz?')" href="<c:url value="/admin/usermanagement/deleteuser/${user.id}" />">Sil</a>
+							            <a class="btn btn-warning" href="<c:url value="/admin/usermanagement/edituser/${user.id}" />">Güncelle</a>
 							        </td>
 							    </tr>
 							</c:forEach>
