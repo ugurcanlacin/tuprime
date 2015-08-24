@@ -30,9 +30,9 @@ import org.hibernate.annotations.NamedQuery;
 		@NamedQuery(name = "getUser", query = "from User u where u.username =:username and u.passwordHash = :password"),
 
 		@NamedQuery(name = "getUserId", query = "select u.id from User u where u.username =:username"),
-		@NamedQuery(name = "getAllUsers", query = "from User u where u.state=1"),
+		@NamedQuery(name = "getAllUsers", query = "from User u where u.state='1'"),
 		@NamedQuery(name = "loadUser", query = "from User u where u.username =:username"),
-		@NamedQuery(name = "changeState",query="UPDATE User u SET u.state='2' WHERE u.id=:id")
+		@NamedQuery(name = "changeState",query="UPDATE User u SET u.state='0' WHERE u.id=:id")
 		})
 @Entity
 @Table(name = "user", catalog = "sportclubsystem", uniqueConstraints = {

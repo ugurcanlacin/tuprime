@@ -96,6 +96,10 @@
 		class="com.tuprime.business.personaldetails.PersonalDetailsServiceImpl">
 		<property name="personalDetailsDao" ref="personalDetailsDao" />
 	</bean>
+	<bean id="userManagement" class="com.tuprime.business.user.UserManagementImpl">
+		<property name="userService" ref="userService" />
+		<property name="roleService" ref="roleService" />
+	</bean>
 
 	<!-- SERVICE END -->
 

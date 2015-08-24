@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tuprime.common.business.role.RoleService;
+import com.tuprime.common.business.user.ManagementService;
 import com.tuprime.common.business.user.UserService;
 import com.tuprime.entities.Role;
 import com.tuprime.entities.User;
@@ -31,6 +32,9 @@ public class UserManagementController {
 
 	@Resource(name = "roleService")
 	private RoleService roleService;
+	
+	@Resource(name = "userManagement")
+	private ManagementService managementService;
 
 	public UserService getUserService() {
 		return userService;
@@ -48,25 +52,23 @@ public class UserManagementController {
 		this.roleService = roleService;
 	}
 
+	public ManagementService getManagementService() {
+		return managementService;
+	}
+
+	public void setManagementService(ManagementService managementService) {
+		this.managementService = managementService;
+	}
+
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
 	public ModelAndView viewAddUserPage() {
-		User userForm = new User();
-		ModelAndView model = new ModelAndView("admin/addUser");
-		model.addObject("userForm", userForm);
-		return model;
+		return new ModelAndView("admin/addUser", "userForm", new User());
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public ModelAndView proccessAddUser(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("common/result");
-		user.setActive(true);
-		user.setCreationTimestamp(new Date());
-		List<Role> roleList = new ArrayList<Role>();
-		Role role = roleService.getRoleByName(RoleNames.ROLE_USER); // ROLE_USER default.
-		roleList.add(role);
-		user.setRole(roleList);
-		String password = Tool.encrypt(user.getPasswordHash());
-		user.setPasswordHash(password);
+		user = managementService.prepareNewUser(user);
 		try {
 			userService.merge(user);
 			model.addObject("result", "Kayıt başarılıyla tamamlandı!");
@@ -89,24 +91,15 @@ public class UserManagementController {
 
 	@RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
 	public ModelAndView editUser(@PathVariable("id") int id) {
-		User userForm = userService.find(id);
-		ModelAndView model = new ModelAndView("admin/editUser");
-		model.addObject("userForm", userForm);
-		return model;
+		return new ModelAndView("admin/editUser","userForm",userService.find(id));
 	}
 
 	@RequestMapping(value = "/edituser", method = RequestMethod.POST)
 	public ModelAndView editUserProccess(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("common/result");
-		User currentUser = userService.find(user.getId());
-		currentUser.setName(user.getName());
-		currentUser.setSurname(user.getSurname());
-		currentUser.setUsername(user.getUsername());
-		currentUser.setEmail(user.getEmail());
-		currentUser.setActive(user.isActive());
-		
+		user = managementService.prepareUserForEdit(user);
 		try {
-			userService.update(currentUser);
+			userService.update(user);
 			model.addObject("result", "Güncelleme başarıyla tamamlandı!");
 		} catch (Exception e) {
 			model.addObject("result", "Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
@@ -117,9 +110,8 @@ public class UserManagementController {
 
 	@RequestMapping(value = "role", method = RequestMethod.GET)
 	public ModelAndView roleManagement() {
-		ModelAndView model = new ModelAndView("admin/role");
 		List<User> allUsers = userService.getAllUsers();
-		model.addObject("users", allUsers);
+		ModelAndView model = new ModelAndView("admin/role","users",allUsers);
 		return model;
 	}
 
@@ -129,12 +121,7 @@ public class UserManagementController {
 		ModelAndView model = new ModelAndView("admin/editRole");
 		model.addObject("userForm", userForm);
 		model.addObject("roles", roleService.getAllRoles());
-		List<String> roleList = new ArrayList<String>();
-		List<Role> userRoleList = userForm.getRole();
-		for (Role role : userRoleList) {
-			roleList.add(role.getRole());
-		}
-		model.addObject("usersroleList", roleList);
+		model.addObject("usersroleList", managementService.getUserRoleList(userForm));
 		return model;
 	}
 

@@ -12,19 +12,10 @@ import com.tuprime.entities.User;
 
 @Controller
 public class HomeController {
-
 	
 	@RequestMapping(value = { "/", "/admin/login" })
-	public ModelAndView getLoginForm(@ModelAttribute User user,
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-		String message = "";
-		if (error != null) {
-			message = "Incorrect username or password !";
-		} else if (logout != null) {
-			message = "Logout successful !";
-		}
-		return new ModelAndView("admin/login", "message", message);
+	public ModelAndView getLoginForm() {
+		return new ModelAndView("admin/login");
 	}
 	@RequestMapping(value = { "/redirect", "/qweqwe" })
 	public ModelAndView getLoginForm2() {
