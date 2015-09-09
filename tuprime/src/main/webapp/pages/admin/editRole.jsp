@@ -85,7 +85,7 @@
                       <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                           <c:forEach items="${roles}" var="role">
-		                  		<input type="checkbox" name="${role.role}" id="${role.role}" value="true" <c:if test='${  fn:contains( usersroleList,role.role) }'>checked="checked"</c:if> />
+		                  		<input type="checkbox" name="roleArray" id="${role.role}" value="${role}" <c:if test='${  fn:contains( usersroleList,role.role) }'>checked="checked"</c:if> />
 		                  		<label for="${role.role}">${role.role}</label>
 		                  		<br>
 		                  </c:forEach>

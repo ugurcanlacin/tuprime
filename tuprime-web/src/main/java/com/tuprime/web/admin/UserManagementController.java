@@ -128,20 +128,12 @@ public class UserManagementController {
 	@RequestMapping(value = "/editrole", method = RequestMethod.POST)
 	public ModelAndView editRoleProccess(
 			@ModelAttribute("userForm") User user,
-			@RequestParam(required = false, value = "ROLE_USER") Boolean roleUser,
-			@RequestParam(required = false, value = "ROLE_ADMIN") Boolean roleAdmin,
-			@RequestParam(required = false, value = "ROLE_TRAINER") Boolean roleTrainer) {
+			@RequestParam(value="roleArray")String[] roleArray) {
 		ModelAndView model = new ModelAndView("common/result");
 		user = userService.find(user.getId());
 		List<Role> roleList = new ArrayList<Role>();
-		if(roleUser != null && roleUser == true){
-			roleList.add(roleService.getRoleByName(RoleNames.ROLE_USER));
-		}
-		if(roleAdmin != null && roleAdmin == true){
-			roleList.add(roleService.getRoleByName(RoleNames.ROLE_ADMIN));
-		}
-		if(roleTrainer != null && roleTrainer == true){
-			roleList.add(roleService.getRoleByName(RoleNames.ROLE_TRAINER));
+		for (String role : roleArray) {
+			roleList.add(roleService.getRoleByName(role));
 		}
 		user.setRole(roleList);
 		try {
