@@ -61,12 +61,12 @@ public class UserManagementController {
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
-	public ModelAndView viewAddUserPage() {
+	public ModelAndView getAddUserPage() {
 		return new ModelAndView("admin/addUser", "userForm", new User());
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
-	public ModelAndView proccessAddUser(@ModelAttribute("userForm") User user) {
+	public ModelAndView addNewUser(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("common/result");
 		user = managementService.prepareNewUser(user);
 		try {
@@ -80,7 +80,7 @@ public class UserManagementController {
 	}
 
 	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
-	public String deleteUser(@PathVariable("id") int id) {
+	public String deleteUserById(@PathVariable("id") int id) {
 		try {
 			userService.deleteUser(id);
 		} catch (Exception e) {
@@ -90,12 +90,12 @@ public class UserManagementController {
 	}
 
 	@RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
-	public ModelAndView editUser(@PathVariable("id") int id) {
+	public ModelAndView editUserById(@PathVariable("id") int id) {
 		return new ModelAndView("admin/editUser","userForm",userService.find(id));
 	}
 
 	@RequestMapping(value = "/edituser", method = RequestMethod.POST)
-	public ModelAndView editUserProccess(@ModelAttribute("userForm") User user) {
+	public ModelAndView editUserByInstance(@ModelAttribute("userForm") User user) {
 		ModelAndView model = new ModelAndView("common/result");
 		user = managementService.prepareUserForEdit(user);
 		try {
@@ -109,14 +109,14 @@ public class UserManagementController {
 	}
 
 	@RequestMapping(value = "role", method = RequestMethod.GET)
-	public ModelAndView roleManagement() {
+	public ModelAndView getRoleManagementPage() {
 		List<User> allUsers = userService.getAllUsers();
 		ModelAndView model = new ModelAndView("admin/role","users",allUsers);
 		return model;
 	}
 
 	@RequestMapping(value = "/editrole/{id}", method = RequestMethod.GET)
-	public ModelAndView selectUserForRole(@PathVariable("id") int id) {
+	public ModelAndView selectUserForRoleManagement(@PathVariable("id") int id) {
 		User userForm = userService.find(id);
 		ModelAndView model = new ModelAndView("admin/editRole");
 		model.addObject("userForm", userForm);
@@ -126,7 +126,7 @@ public class UserManagementController {
 	}
 
 	@RequestMapping(value = "/editrole", method = RequestMethod.POST)
-	public ModelAndView editRoleProccess(
+	public ModelAndView editSelectedUserRole(
 			@ModelAttribute("userForm") User user,
 			@RequestParam(value="roleArray")String[] roleArray) {
 		ModelAndView model = new ModelAndView("common/result");

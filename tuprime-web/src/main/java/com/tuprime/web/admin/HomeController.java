@@ -17,8 +17,8 @@ public class HomeController {
 	public ModelAndView getLoginForm() {
 		return new ModelAndView("admin/login");
 	}
-	@RequestMapping(value = { "/redirect", "/qweqwe" })
-	public ModelAndView getLoginForm2() {
-		return new ModelAndView("common/redirect", "message", "");
+	@RequestMapping(value = "/redirect")
+	public ModelAndView getRedirectPage() {
+		return new ModelAndView("common/redirect");
 	}
 }

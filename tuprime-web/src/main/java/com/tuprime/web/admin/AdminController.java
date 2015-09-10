@@ -49,9 +49,4 @@ public class AdminController {
 		model.addObject("users", allUsers);
 		return model;
 	}
-
-	@RequestMapping("/about")
-	public ModelAndView getAbout() {
-		return new ModelAndView("admin/about");
-	}
 }
