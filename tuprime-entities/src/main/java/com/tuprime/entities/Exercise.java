@@ -35,6 +35,24 @@ public class Exercise implements java.io.Serializable {
 			@JoinColumn(name = "exercise_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "workout_id", referencedColumnName = "id") })
 	private Set<Workout> workouts;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "exercise_type", joinColumns = {
+			@JoinColumn(name = "exercise_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "type_id", referencedColumnName = "id") })
+	private Set<Type> type;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "exercise_muscle", joinColumns = {
+			@JoinColumn(name = "exercise_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "muscle_id", referencedColumnName = "id") })
+	private Set<Muscle> muscle;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "exercise_level", joinColumns = {
+			@JoinColumn(name = "exercise_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "level_id", referencedColumnName = "id") })
+	private Set<Level> level;
 
 	public Exercise() {
 	}
@@ -71,6 +89,31 @@ public class Exercise implements java.io.Serializable {
 		this.workouts = workouts;
 	}
 	
+	public Set<Type> getType() {
+		return type;
+	}
+
+	public void setType(Set<Type> type) {
+		this.type = type;
+	}
+	
+
+	public Set<Muscle> getMuscle() {
+		return muscle;
+	}
+
+	public void setMuscle(Set<Muscle> muscle) {
+		this.muscle = muscle;
+	}
+	
+	public Set<Level> getLevel() {
+		return level;
+	}
+
+	public void setLevel(Set<Level> level) {
+		this.level = level;
+	}
+
 	@Override
 	public String toString() {
 		return getExercise();

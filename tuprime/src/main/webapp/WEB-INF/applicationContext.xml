@@ -29,6 +29,9 @@
 				<value>com.tuprime.entities.UserWorkout</value>
 				<value>com.tuprime.entities.UserDiet</value>
 				<value>com.tuprime.entities.Login</value>
+				<value>com.tuprime.entities.Type</value>
+				<value>com.tuprime.entities.Muscle</value>
+				<value>com.tuprime.entities.Level</value>
 			</list>
 		</property>
 
