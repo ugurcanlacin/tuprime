@@ -53,8 +53,9 @@ public class User implements java.io.Serializable {
 	private Set<Login> login;
 
 	@OneToMany(mappedBy = "user")
-	private Set<UserDiet> userDiet = new HashSet<UserDiet>();
-
+	//private Set<UserDiet> userDiet = new HashSet<UserDiet>();
+	private Set<UserDiet> userDiet;
+	
 	@OneToMany(mappedBy = "user")
 	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
 

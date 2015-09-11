@@ -104,6 +104,11 @@ public class Workout implements java.io.Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return getWorkoutProgram();
+	}
+	
+	@Override
 	public boolean equals(Object other) {
 		if (this == other)
 			return true;

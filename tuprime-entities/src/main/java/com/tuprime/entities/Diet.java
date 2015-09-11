@@ -94,6 +94,11 @@ public class Diet implements java.io.Serializable {
 	}
 	
 	@Override
+	public String toString() {
+		return getDiet();
+	}
+	
+	@Override
 	public boolean equals(Object other) {
 		if (this == other)
 			return true;

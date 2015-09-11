@@ -11,6 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+@NamedQueries({
+	@NamedQuery(name = "getUserDietListByUserId", query = "from UserDiet ud where ud.user.id =:id")
+	})
 @Entity
 @Table(name = "user_diet")
 public class UserDiet {

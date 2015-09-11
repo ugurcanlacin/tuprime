@@ -1,6 +1,11 @@
 package com.tuprime.web.admin;
 
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -10,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tuprime.common.business.user.UserService;
+import com.tuprime.common.business.userdiet.UserDietService;
+import com.tuprime.entities.Diet;
 import com.tuprime.entities.User;
+import com.tuprime.entities.UserDiet;
 
 @Controller
 @RequestMapping("/admin/customermanagement")
@@ -18,7 +26,18 @@ public class CustomerManagementController {
 	
 	@Resource(name = "userService")
 	private UserService userService;
+	
+	@Resource(name = "userDietService")
+	private UserDietService userDietService;
 		
+	public UserDietService getUserDietService() {
+		return userDietService;
+	}
+
+	public void setUserDietService(UserDietService userDietService) {
+		this.userDietService = userDietService;
+	}
+
 	public UserService getUserService() {
 		return userService;
 	}
@@ -33,6 +52,8 @@ public class CustomerManagementController {
 		User userForm = userService.find(id);
 		ModelAndView model = new ModelAndView("trainer/select");
 		model.addObject("userForm", userForm);
+		List<UserDiet> userDiet = userDietService.getUserDietListByUserId(userForm.getId());
+		model.addObject("userDiet",userDiet);
 		return model;
 	}
 
