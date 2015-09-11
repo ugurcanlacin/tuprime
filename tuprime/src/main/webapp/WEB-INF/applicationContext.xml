@@ -25,7 +25,6 @@
 				<value>com.tuprime.entities.Diet</value>
 				<value>com.tuprime.entities.PersonalDetails</value>
 				<value>com.tuprime.entities.Exercise</value>
-				<value>com.tuprime.entities.Region</value>
 				<value>com.tuprime.entities.Admin</value>
 				<value>com.tuprime.entities.UserWorkout</value>
 				<value>com.tuprime.entities.UserDiet</value>

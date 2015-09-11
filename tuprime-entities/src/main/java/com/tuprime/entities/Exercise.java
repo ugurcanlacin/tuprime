@@ -31,11 +31,6 @@ public class Exercise implements java.io.Serializable {
 	private String exercise;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "exercise_region", joinColumns = {
-			@JoinColumn(name = "exercise_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "region_id", referencedColumnName = "id") })
-	private List<Region> regionList;
-	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "workout_exercise", joinColumns = {
 			@JoinColumn(name = "exercise_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "workout_id", referencedColumnName = "id") })
@@ -67,13 +62,6 @@ public class Exercise implements java.io.Serializable {
 		this.exercise = exercise;
 	}
 
-	public List<Region> getRegionList() {
-		return regionList;
-	}
-
-	public void setRegionList(List<Region> regionList) {
-		this.regionList = regionList;
-	}
 
 	public Set<Workout> getWorkouts() {
 		return workouts;
