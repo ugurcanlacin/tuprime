@@ -27,5 +27,9 @@ public class UserDietServiceImpl extends GenericServiceImpl<UserDiet> implements
 	public List<UserDiet> getUserDietListByUserId(int userId) {
 		return userDietDao.getUserDietListByUserId(userId);
 	}
+	@Override
+	public UserDiet getUserDietByUserAndDietId(int diet_id, int user_id) {
+		return userDietDao.getUserDietByUserAndDietId(diet_id, user_id);
+	}
 
 }

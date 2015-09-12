@@ -7,4 +7,5 @@ import com.tuprime.entities.UserDiet;
 
 public interface UserDietDao extends GenericDao<UserDiet>{
 	public List<UserDiet> getUserDietListByUserId(int userId);
+	public UserDiet getUserDietByUserAndDietId(int diet_id,int user_id);
 }

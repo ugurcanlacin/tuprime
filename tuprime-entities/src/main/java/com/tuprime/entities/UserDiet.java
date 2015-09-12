@@ -15,7 +15,8 @@ import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
 @NamedQueries({
-	@NamedQuery(name = "getUserDietListByUserId", query = "from UserDiet ud where ud.user.id =:id")
+	@NamedQuery(name = "getUserDietListByUserId", query = "from UserDiet ud where ud.user.id =:id"),
+	@NamedQuery(name = "getUserDietByUserAndDietId", query = "from UserDiet ud where ud.user.id =:user_id and ud.diet.id=:diet_id")
 	})
 @Entity
 @Table(name = "user_diet")
@@ -24,7 +25,7 @@ public class UserDiet {
 	@GeneratedValue(strategy = IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	

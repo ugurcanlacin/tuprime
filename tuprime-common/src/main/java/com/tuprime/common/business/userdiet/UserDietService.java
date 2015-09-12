@@ -7,5 +7,5 @@ import com.tuprime.entities.UserDiet;
 
 public interface UserDietService extends GenericService<UserDiet>{
 	public List<UserDiet> getUserDietListByUserId(int userId);
-
+	public UserDiet getUserDietByUserAndDietId(int diet_id,int user_id);
 }

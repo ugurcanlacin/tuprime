@@ -9,7 +9,8 @@ import com.tuprime.common.dao.userdiet.UserDietDao;
 import com.tuprime.dao.generic.GenericDaoImpl;
 import com.tuprime.entities.UserDiet;
 
-public class UserDietDaoImpl extends GenericDaoImpl<UserDiet> implements UserDietDao{
+public class UserDietDaoImpl extends GenericDaoImpl<UserDiet> implements
+		UserDietDao {
 
 	private SessionFactory sessionFactory;
 
@@ -23,8 +24,18 @@ public class UserDietDaoImpl extends GenericDaoImpl<UserDiet> implements UserDie
 
 	@Override
 	public List<UserDiet> getUserDietListByUserId(int userId) {
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("getUserDietListByUserId").setParameter("id", userId);
+		Query query = sessionFactory.getCurrentSession()
+				.getNamedQuery("getUserDietListByUserId")
+				.setParameter("id", userId);
 		return query.list();
+	}
+
+	@Override
+	public UserDiet getUserDietByUserAndDietId(int diet_id, int user_id) {
+		Query query = sessionFactory.getCurrentSession()
+				.getNamedQuery("getUserDietByUserAndDietId")
+				.setParameter("user_id", user_id).setParameter("diet_id", diet_id);
+		return (UserDiet)query.uniqueResult();
 	}
 
 }

@@ -68,7 +68,7 @@
 							<div class="tab-pane active" id="tab_1">
 
 								<p>
-									<a class="btn bg-olive margin" href="#">Diyet Ekle</a>
+									<a class="btn bg-olive margin" href="<c:url value="/admin/customermanagement/adddiet/${userForm.id}"/>">Diyet Ekle</a>
 								</p>
 
 								<!-- Main content -->
@@ -98,9 +98,7 @@
 																<td>${userdiet.diet}</td>
 																<td>${userdiet.diet.timestamp}</td>
 																<td>
-																	<!-- Actions for the individual item --> <a
-																	class="btn btn-success"
-																	href="<c:url value="#" />">Seç</a>
+																	<a class="btn btn-danger" onclick="return confirm('Bu diyeti silmek istediğinize emin misiz?')" href="<c:url value="/admin/customermanagement/deletediet/${userdiet.diet.id}/${userdiet.user.id}" />">Sil</a>
 																</td>
 															</tr>
 														</c:forEach>
