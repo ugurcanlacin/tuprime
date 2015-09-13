@@ -23,4 +23,10 @@ public class UserWorkoutServiceImpl extends GenericServiceImpl<UserWorkout> impl
 		return getUserWorkoutDao();
 	}
 
+	@Override
+	public UserWorkout getUserWorkoutByUserAndWorkoutId(int workout_id,
+			int user_id) {
+		return userWorkoutDao.getUserWorkoutByUserAndWorkoutId(workout_id, user_id);
+	}
+
 }

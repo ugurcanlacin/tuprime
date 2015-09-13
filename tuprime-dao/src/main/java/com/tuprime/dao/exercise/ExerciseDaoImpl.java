@@ -1,5 +1,7 @@
 package com.tuprime.dao.exercise;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 
 import com.tuprime.common.dao.exercise.ExerciseDao;
@@ -16,6 +18,12 @@ public class ExerciseDaoImpl extends GenericDaoImpl<Exercise> implements Exercis
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public List<Exercise> getAllExercises() {
+		return sessionFactory.getCurrentSession().getNamedQuery("getAllExercises")
+				.list();
 	}
 
 }

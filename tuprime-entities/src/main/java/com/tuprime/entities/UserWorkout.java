@@ -11,6 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+@NamedQueries({
+	@NamedQuery(name = "getUserWorkoutByUserAndWorkoutId", query = "from UserWorkout ud where ud.user.id =:user_id and ud.workout.id=:workout_id")
+	})
 @Entity
 @Table(name = "user_workout")
 public class UserWorkout {
@@ -19,7 +25,7 @@ public class UserWorkout {
 	@GeneratedValue(strategy = IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	

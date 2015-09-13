@@ -46,7 +46,7 @@ public class Workout implements java.io.Serializable {
 	@OneToMany(mappedBy = "workout")
 	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "workout_exercise", joinColumns = {
 			@JoinColumn(name = "workout_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "exercise_id", referencedColumnName = "id") })
@@ -69,7 +69,7 @@ public class Workout implements java.io.Serializable {
 	}
 
 	@Version
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "timestamp", nullable = false, length = 10)
 	public Date getTimestamp() {
 		return this.timestamp;

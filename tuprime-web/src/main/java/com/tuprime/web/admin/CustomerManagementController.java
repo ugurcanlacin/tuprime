@@ -16,11 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tuprime.common.business.diet.DietService;
+import com.tuprime.common.business.exercise.ExerciseService;
 import com.tuprime.common.business.user.UserService;
 import com.tuprime.common.business.userdiet.UserDietService;
+import com.tuprime.common.business.userworkout.UserWorkoutService;
+import com.tuprime.common.business.workout.WorkoutService;
 import com.tuprime.entities.Diet;
+import com.tuprime.entities.Exercise;
 import com.tuprime.entities.User;
 import com.tuprime.entities.UserDiet;
+import com.tuprime.entities.UserWorkout;
+import com.tuprime.entities.Workout;
 
 @Controller
 @RequestMapping("/admin/customermanagement")
@@ -31,10 +37,32 @@ public class CustomerManagementController {
 
 	@Resource(name = "userDietService")
 	private UserDietService userDietService;
-	
+
 	@Resource(name = "dietService")
 	private DietService dietService;
-	
+
+	@Resource(name = "exerciseService")
+	private ExerciseService exerciseService;
+
+	@Resource(name = "userWorkoutService")
+	private UserWorkoutService userWorkoutService;
+
+	public UserWorkoutService getUserWorkoutService() {
+		return userWorkoutService;
+	}
+
+	public void setUserWorkoutService(UserWorkoutService userWorkoutService) {
+		this.userWorkoutService = userWorkoutService;
+	}
+
+	public ExerciseService getExerciseService() {
+		return exerciseService;
+	}
+
+	public void setExerciseService(ExerciseService exerciseService) {
+		this.exerciseService = exerciseService;
+	}
+
 	public DietService getDietService() {
 		return dietService;
 	}
@@ -60,13 +88,14 @@ public class CustomerManagementController {
 	}
 
 	@RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
-	public ModelAndView selectUserById(@PathVariable("id") int id) {
-		User userForm = userService.find(id);
+	public ModelAndView selectUserById(@PathVariable("id") int user_id) {
+		User userForm = userService.find(user_id);
 		ModelAndView model = new ModelAndView("trainer/select");
 		model.addObject("userForm", userForm);
 		List<UserDiet> userDiet = userDietService
 				.getUserDietListByUserId(userForm.getId());
 		model.addObject("userDiet", userDiet);
+		model.addObject("userWorkout", userForm.getUserWorkout());
 		return model;
 	}
 
@@ -85,7 +114,8 @@ public class CustomerManagementController {
 
 	@RequestMapping(value = "/adddiet/{user_id}", method = RequestMethod.GET)
 	public ModelAndView getAddDietPage(@PathVariable("user_id") int user_id) {
-		return new ModelAndView("trainer/addDiet", "diet", new Diet()).addObject("user_id", user_id);
+		return new ModelAndView("trainer/addDiet", "diet", new Diet())
+				.addObject("user_id", user_id);
 	}
 
 	@RequestMapping(value = "/adddiet", method = RequestMethod.POST)
@@ -109,9 +139,10 @@ public class CustomerManagementController {
 
 	@RequestMapping(value = "/editdiet/{id}", method = RequestMethod.GET)
 	public ModelAndView editUserById(@PathVariable("id") int id) {
-		return new ModelAndView("trainer/editDiet","diet",dietService.find(id));
+		return new ModelAndView("trainer/editDiet", "diet",
+				dietService.find(id));
 	}
-	
+
 	@RequestMapping(value = "/editdiet", method = RequestMethod.POST)
 	public ModelAndView editUserByInstance(@ModelAttribute("diet") Diet diet,
 			@RequestParam("diet_id") int diet_id) {
@@ -122,9 +153,59 @@ public class CustomerManagementController {
 			dietService.update(diet);
 			model.addObject("result", "Güncelleme başarıyla tamamlandı!");
 		} catch (Exception e) {
-			model.addObject("result", "Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
+			model.addObject("result",
+					"Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
 		return model;
 	}
-	
+
+	@RequestMapping(value = "/addworkout/{user_id}", method = RequestMethod.GET)
+	public ModelAndView getAddWorkoutPage(@PathVariable("user_id") int user_id) {
+		ModelAndView model = new ModelAndView("trainer/addWorkout", "workout",
+				new Workout());
+		model.addObject("user_id", user_id);
+		model.addObject("exercises", exerciseService.getAllExercises());
+		return model;
+	}
+
+	@RequestMapping(value = "/addworkout", method = RequestMethod.POST)
+	public ModelAndView addNewWorkoutForSpecificUser(
+			@ModelAttribute("workout") Workout workout,
+			@RequestParam(value = "exercise") int[] exerciseArray,
+			@RequestParam("user_id") int user_id) {
+		ModelAndView model = new ModelAndView("common/result");
+		Set<Exercise> exerciseSet = new HashSet<Exercise>();
+		for (int exerciseId : exerciseArray) {
+			exerciseSet.add(exerciseService.find(exerciseId));
+		}
+		User user = userService.find(user_id);
+		UserWorkout userWorkout = new UserWorkout();
+		userWorkout.setUser(user);
+		workout.setExercises(exerciseSet);
+		workout.setTimestamp(new Date());
+		userWorkout.setWorkout(workout);
+		try {
+			userWorkoutService.merge(userWorkout);
+			model.addObject("result", "Kayıt başarılıyla tamamlandı!");
+		} catch (Exception e) {
+			model.addObject("result",
+					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
+		}
+		return model;
+	}
+
+	@RequestMapping(value = "/deleteworkout/{workout_id}/{user_id}", method = RequestMethod.GET)
+	public String deleteUserWorkoutById(
+			@PathVariable("workout_id") int workout_id,
+			@PathVariable("user_id") int user_id) {
+		try {
+			UserWorkout objectForDeletion = userWorkoutService
+					.getUserWorkoutByUserAndWorkoutId(workout_id, user_id);
+			userWorkoutService.delete(objectForDeletion);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "redirect:/admin/customermanagement/select/" + user_id;
+	}
+
 }

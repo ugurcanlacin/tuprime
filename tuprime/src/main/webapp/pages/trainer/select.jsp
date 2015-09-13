@@ -124,16 +124,62 @@
 								<!-- /.content -->
 							</div>
 							<!-- /.tab-pane -->
-							<div class="tab-pane" id="tab_2">The European languages are
-								members of the same family. Their separate existence is a myth.
-								For science, music, sport, etc, Europe uses the same vocabulary.
-								The languages only differ in their grammar, their pronunciation
-								and their most common words. Everyone realizes why a new common
-								language would be desirable: one could refuse to pay expensive
-								translators. To achieve this, it would be necessary to have
-								uniform grammar, pronunciation and more common words. If several
-								languages coalesce, the grammar of the resulting language is
-								more simple and regular than that of the individual languages.</div>
+							<div class="tab-pane" id="tab_2">
+								<p>
+									<a class="btn bg-olive margin" href="<c:url value="/admin/customermanagement/addworkout/${userForm.id}"/>">Çalışma Planı Ekle</a>
+								</p>
+								<!-- Main content -->
+								<section class="content">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="box">
+											<div class="box-header">
+												<h3 class="box-title">Çalışma Planı Yönetim</h3>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body">
+												<table id="example1"
+													class="table table-bordered table-striped">
+													<thead>
+														<tr>
+															<th data-field="id">Id</th>
+															<th data-field="workoutProgram">Çalışma Planı</th>
+															<th data-field="timestamp">Tarih</th>
+															<th>İşlemler</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="${userWorkout}" var="userWorkout">
+															<tr>
+																<td>${userWorkout.workout.id}</td>
+																<td>${userWorkout.workout.workoutProgram}</td>
+																<td>${userWorkout.workout.timestamp}</td>
+																<td>
+																	<a class="btn btn-danger" onclick="return confirm('Bu diyeti silmek istediğinize emin misiz?')" href="<c:url value="/admin/customermanagement/deleteworkout/${userWorkout.workout.id}/${userWorkout.user.id}" />">Sil</a>
+																	<a class="btn btn-warning" href="<c:url value="/admin/customermanagement/editworkout/${userWorkout.workout.id}" />">Güncelle</a>
+																</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+													<tfoot>
+														<tr>
+															<th data-field="id">Id</th>
+															<th data-field="workoutProgram">Çalışma Planı</th>
+															<th data-field="timestamp">Tarih</th>
+															<th>İşlemler</th>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+											<!-- /.box-body -->
+										</div>
+										<!-- /.box -->
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- /.row --> </section>
+								<!-- /.content -->
+							</div>
 							<!-- /.tab-pane -->
 							<div class="tab-pane" id="tab_3">Lorem Ipsum is simply
 								dummy text of the printing and typesetting industry. Lorem Ipsum

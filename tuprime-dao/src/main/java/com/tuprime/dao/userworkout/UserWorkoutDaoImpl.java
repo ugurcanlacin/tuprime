@@ -1,5 +1,6 @@
 package com.tuprime.dao.userworkout;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.tuprime.common.dao.userworkout.UserWorkoutDao;
@@ -16,6 +17,15 @@ public class UserWorkoutDaoImpl extends GenericDaoImpl<UserWorkout> implements U
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public UserWorkout getUserWorkoutByUserAndWorkoutId(int workout_id,
+			int user_id) {
+		Query query = sessionFactory.getCurrentSession()
+				.getNamedQuery("getUserWorkoutByUserAndWorkoutId")
+				.setParameter("user_id", user_id).setParameter("workout_id", workout_id);
+		return (UserWorkout)query.uniqueResult();
 	}
 
 }

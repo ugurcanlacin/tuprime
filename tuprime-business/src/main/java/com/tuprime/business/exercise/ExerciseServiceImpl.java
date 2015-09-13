@@ -1,5 +1,7 @@
 package com.tuprime.business.exercise;
 
+import java.util.List;
+
 import com.tuprime.business.generic.GenericServiceImpl;
 import com.tuprime.common.business.exercise.ExerciseService;
 import com.tuprime.common.dao.exercise.ExerciseDao;
@@ -21,6 +23,11 @@ public class ExerciseServiceImpl extends GenericServiceImpl<Exercise> implements
 	@Override
 	public GenericDao<Exercise> getDao() {
 		return getExerciseDao();
+	}
+
+	@Override
+	public List<Exercise> getAllExercises() {
+		return exerciseDao.getAllExercises();
 	}
 
 }
