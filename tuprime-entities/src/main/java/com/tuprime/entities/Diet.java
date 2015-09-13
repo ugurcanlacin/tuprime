@@ -60,7 +60,7 @@ public class Diet implements java.io.Serializable {
 	}
 
 	@Version
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "timestamp", nullable = false, length = 10)
 	public Date getTimestamp() {
 		return this.timestamp;
