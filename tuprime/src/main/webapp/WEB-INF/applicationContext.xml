@@ -76,6 +76,9 @@
 	<bean id="userDietDao" class="com.tuprime.dao.userdiet.UserDietDaoImpl">
 		<property name="sessionFactory" ref="hibernate4SessionFactory" />
 	</bean>
+	<bean id="userWorkoutDao" class="com.tuprime.dao.userworkout.UserWorkoutDaoImpl">
+		<property name="sessionFactory" ref="hibernate4SessionFactory" />
+	</bean>
 	<!-- DAO END -->
 
 
@@ -103,6 +106,10 @@
 	<bean id="userDietService"
 		class="com.tuprime.business.userdiet.UserDietServiceImpl">
 		<property name="userDietDao" ref="userDietDao" />
+	</bean>
+	<bean id="userWorkoutService"
+		class="com.tuprime.business.userworkout.UserWorkoutServiceImpl">
+		<property name="userWorkoutDao" ref="userWorkoutDao" />
 	</bean>
 	<bean id="userManagement" class="com.tuprime.business.user.UserManagementImpl">
 		<property name="userService" ref="userService" />
