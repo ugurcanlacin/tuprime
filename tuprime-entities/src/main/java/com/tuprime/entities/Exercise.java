@@ -15,6 +15,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+
+@NamedQueries({
+	@NamedQuery(name = "getAllExercises", query = "from Exercise e")
+	})
 @Entity
 @Table(name = "exercise", catalog = "sportclubsystem")
 public class Exercise implements java.io.Serializable {
