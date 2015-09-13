@@ -181,16 +181,72 @@
 								<!-- /.content -->
 							</div>
 							<!-- /.tab-pane -->
-							<div class="tab-pane" id="tab_3">Lorem Ipsum is simply
-								dummy text of the printing and typesetting industry. Lorem Ipsum
-								has been the industry's standard dummy text ever since the
-								1500s, when an unknown printer took a galley of type and
-								scrambled it to make a type specimen book. It has survived not
-								only five centuries, but also the leap into electronic
-								typesetting, remaining essentially unchanged. It was popularised
-								in the 1960s with the release of Letraset sheets containing
-								Lorem Ipsum passages, and more recently with desktop publishing
-								software like Aldus PageMaker including versions of Lorem Ipsum.
+							<div class="tab-pane" id="tab_3">
+
+								<p>
+									<a class="btn bg-olive margin" href="<c:url value="/admin/customermanagement/addpdetails/${userForm.id}"/>">Ölçü Ekle</a>
+								</p>
+								<!-- Main content -->
+								<section class="content">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="box">
+											<div class="box-header">
+												<h3 class="box-title">Kişisel Detaylar Yönetim</h3>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body">
+												<table id="example1"
+													class="table table-bordered table-striped">
+													<thead>
+														<tr>
+															<th data-field="id">Id</th>
+															<th data-field="weight">Kilo</th>
+															<th data-field="chest">Göğüs</th>
+															<th data-field="waist">Bel</th>
+															<th data-field="hips">Kalça</th>
+															<th data-field="biceps">Biseps</th>
+															<th>İşlemler</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="${pdetails}" var="pdetail">
+															<tr>
+																<td>${pdetail.id}</td>
+																<td>${pdetail.weight}</td>
+																<td>${pdetail.chest}</td>
+																<td>${pdetail.waist}</td>
+																<td>${pdetail.hips}</td>
+																<td>${pdetail.biceps}</td>
+																<td>
+																	<a class="btn btn-danger" onclick="return confirm('Bu satırı silmek istediğinize emin misiz?')" href="<c:url value="/admin/customermanagement/deletepdetail/${pdetail.id}/${userForm.id}" />">Sil</a>
+																	<a class="btn btn-warning" href="<c:url value="/admin/customermanagement/editworkout/${pdetail.id}" />">Güncelle</a>
+																</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+													<tfoot>
+														<tr>
+															<th data-field="id">Id</th>
+															<th data-field="weight">Kilo</th>
+															<th data-field="chest">Göğüs</th>
+															<th data-field="waist">Bel</th>
+															<th data-field="hips">Kalça</th>
+															<th data-field="biceps">Biseps</th>
+															<th>İşlemler</th>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+											<!-- /.box-body -->
+										</div>
+										<!-- /.box -->
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- /.row --> </section>
+								<!-- /.content -->
+
 							</div>
 							<!-- /.tab-pane -->
 						</div>

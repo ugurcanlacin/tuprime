@@ -96,6 +96,7 @@ public class CustomerManagementController {
 				.getUserDietListByUserId(userForm.getId());
 		model.addObject("userDiet", userDiet);
 		model.addObject("userWorkout", userForm.getUserWorkout());
+		model.addObject("pdetails", userForm.getPersonalDetails());
 		return model;
 	}
 
