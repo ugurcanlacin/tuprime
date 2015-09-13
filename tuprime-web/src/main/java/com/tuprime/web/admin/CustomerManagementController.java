@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tuprime.common.business.diet.DietService;
 import com.tuprime.common.business.user.UserService;
 import com.tuprime.common.business.userdiet.UserDietService;
 import com.tuprime.entities.Diet;
@@ -30,6 +31,17 @@ public class CustomerManagementController {
 
 	@Resource(name = "userDietService")
 	private UserDietService userDietService;
+	
+	@Resource(name = "dietService")
+	private DietService dietService;
+	
+	public DietService getDietService() {
+		return dietService;
+	}
+
+	public void setDietService(DietService dietService) {
+		this.dietService = dietService;
+	}
 
 	public UserDietService getUserDietService() {
 		return userDietService;
@@ -95,4 +107,24 @@ public class CustomerManagementController {
 		return model;
 	}
 
+	@RequestMapping(value = "/editdiet/{id}", method = RequestMethod.GET)
+	public ModelAndView editUserById(@PathVariable("id") int id) {
+		return new ModelAndView("trainer/editDiet","diet",dietService.find(id));
+	}
+	
+	@RequestMapping(value = "/editdiet", method = RequestMethod.POST)
+	public ModelAndView editUserByInstance(@ModelAttribute("diet") Diet diet,
+			@RequestParam("diet_id") int diet_id) {
+		ModelAndView model = new ModelAndView("common/result");
+		diet.setId(diet_id);
+		diet.setTimestamp(new Date());
+		try {
+			dietService.update(diet);
+			model.addObject("result", "Güncelleme başarıyla tamamlandı!");
+		} catch (Exception e) {
+			model.addObject("result", "Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
+		}
+		return model;
+	}
+	
 }

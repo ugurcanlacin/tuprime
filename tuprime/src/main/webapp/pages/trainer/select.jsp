@@ -99,6 +99,7 @@
 																<td>${userdiet.diet.timestamp}</td>
 																<td>
 																	<a class="btn btn-danger" onclick="return confirm('Bu diyeti silmek istediğinize emin misiz?')" href="<c:url value="/admin/customermanagement/deletediet/${userdiet.diet.id}/${userdiet.user.id}" />">Sil</a>
+																	<a class="btn btn-warning" href="<c:url value="/admin/customermanagement/editdiet/${userdiet.diet.id}" />">Güncelle</a>
 																</td>
 															</tr>
 														</c:forEach>
