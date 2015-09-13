@@ -56,7 +56,7 @@ public class User implements java.io.Serializable {
 	//private Set<UserDiet> userDiet = new HashSet<UserDiet>();
 	private Set<UserDiet> userDiet;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
 	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
