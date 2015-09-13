@@ -27,6 +27,7 @@ public class UserWorkout {
 	@JoinColumn(name = "workout_id")
 	private Workout workout;
 	
+	@Column(name = "assignby")
 	private int assignedby;
 
 	
@@ -57,7 +58,7 @@ public class UserWorkout {
 		this.workout = workout;
 	}
 
-	@Column(name = "assignby")
+	
 	public int getAssignedby() {
 		return assignedby;
 	}
