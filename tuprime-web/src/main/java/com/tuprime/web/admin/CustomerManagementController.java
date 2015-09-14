@@ -135,6 +135,7 @@ public class CustomerManagementController {
 			model.addObject("result",
 					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
+		model.addObject("redirectPath", "customermanagement/select/"+user_id);
 		return model;
 	}
 
@@ -157,6 +158,7 @@ public class CustomerManagementController {
 			model.addObject("result",
 					"Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
+		model.addObject("redirectPath", "customermanagement");
 		return model;
 	}
 
@@ -192,6 +194,7 @@ public class CustomerManagementController {
 			model.addObject("result",
 					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
+		model.addObject("redirectPath", "customermanagement/select/"+user_id);
 		return model;
 	}
 

@@ -75,6 +75,7 @@ public class UserManagementController {
 		} catch (Exception e) {
 			model.addObject("result", "Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
+		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
 		return model;
 	}
@@ -104,6 +105,7 @@ public class UserManagementController {
 		} catch (Exception e) {
 			model.addObject("result", "Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
+		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
 		return model;
 	}
@@ -142,6 +144,7 @@ public class UserManagementController {
 		} catch (Exception e) {
 			model.addObject("result", "Yetki ayarları kaydı başarısız oldu.Lütfen tekrar deneyiniz.");
 		}
+		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
 		return model;
 	}

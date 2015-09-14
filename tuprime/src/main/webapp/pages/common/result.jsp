@@ -62,7 +62,7 @@
                     <h2 style="">${result}</h2>
                   </div>
                   <div class="modal-footer">
-                    <a class="btn btn-success btn-sm" href="<c:url value="/admin/usermanagement" />">Devam et</a>
+                    <a class="btn btn-success btn-sm" href="<c:url value="/admin/${redirectPath}" />">Devam et</a>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
