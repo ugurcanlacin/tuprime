@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.tuprime.common.business.user.UserService;
 import com.tuprime.common.business.userdiet.UserDietService;
 import com.tuprime.common.business.userworkout.UserWorkoutService;
 import com.tuprime.common.business.workout.WorkoutService;
+import com.tuprime.common.security.AuthenticationService;
 import com.tuprime.entities.Diet;
 import com.tuprime.entities.Exercise;
 import com.tuprime.entities.User;
@@ -32,6 +34,11 @@ import com.tuprime.entities.Workout;
 @RequestMapping("/admin/customermanagement")
 public class CustomerManagementController {
 
+	private static final Logger logger = Logger.getLogger(CustomerManagementController.class);
+	
+	@Resource(name = "authenticationService")
+	private AuthenticationService authService;
+	
 	@Resource(name = "userService")
 	private UserService userService;
 
@@ -47,6 +54,14 @@ public class CustomerManagementController {
 	@Resource(name = "userWorkoutService")
 	private UserWorkoutService userWorkoutService;
 
+	public AuthenticationService getAuthService() {
+		return authService;
+	}
+
+	public void setAuthService(AuthenticationService authService) {
+		this.authService = authService;
+	}
+	
 	public UserWorkoutService getUserWorkoutService() {
 		return userWorkoutService;
 	}
@@ -97,6 +112,7 @@ public class CustomerManagementController {
 		model.addObject("userDiet", userDiet);
 		model.addObject("userWorkout", userForm.getUserWorkout());
 		model.addObject("pdetails", userForm.getPersonalDetails());
+		logger.info(authService.getAuthenticatedAdmin()+" executed selectUserById()");
 		return model;
 	}
 
@@ -110,11 +126,13 @@ public class CustomerManagementController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		logger.info(authService.getAuthenticatedAdmin()+" executed deleteUserDietById()");
 		return "redirect:/admin/customermanagement/select/" + user_id;
 	}
 
 	@RequestMapping(value = "/adddiet/{user_id}", method = RequestMethod.GET)
 	public ModelAndView getAddDietPage(@PathVariable("user_id") int user_id) {
+		logger.info(authService.getAuthenticatedAdmin()+" executed getAddDietPage()");
 		return new ModelAndView("trainer/addDiet", "diet", new Diet())
 				.addObject("user_id", user_id);
 	}
@@ -136,11 +154,13 @@ public class CustomerManagementController {
 					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
 		model.addObject("redirectPath", "customermanagement/select/"+user_id);
+		logger.info(authService.getAuthenticatedAdmin()+" executed addNewDietForSpecificUser()");
 		return model;
 	}
 
 	@RequestMapping(value = "/editdiet/{id}", method = RequestMethod.GET)
 	public ModelAndView editUserById(@PathVariable("id") int id) {
+		logger.info(authService.getAuthenticatedAdmin()+" executed editUserById()");
 		return new ModelAndView("trainer/editDiet", "diet",
 				dietService.find(id));
 	}
@@ -159,6 +179,7 @@ public class CustomerManagementController {
 					"Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
 		model.addObject("redirectPath", "customermanagement");
+		logger.info(authService.getAuthenticatedAdmin()+" executed editUserByInstance()");
 		return model;
 	}
 
@@ -168,6 +189,7 @@ public class CustomerManagementController {
 				new Workout());
 		model.addObject("user_id", user_id);
 		model.addObject("exercises", exerciseService.getAllExercises());
+		logger.info(authService.getAuthenticatedAdmin()+" executed getAddWorkoutPage()");
 		return model;
 	}
 
@@ -195,6 +217,7 @@ public class CustomerManagementController {
 					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
 		model.addObject("redirectPath", "customermanagement/select/"+user_id);
+		logger.info(authService.getAuthenticatedAdmin()+" executed addNewWorkoutForSpecificUser()");
 		return model;
 	}
 
@@ -209,6 +232,7 @@ public class CustomerManagementController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		logger.info(authService.getAuthenticatedAdmin()+" executed deleteUserWorkoutById()");
 		return "redirect:/admin/customermanagement/select/" + user_id;
 	}
 

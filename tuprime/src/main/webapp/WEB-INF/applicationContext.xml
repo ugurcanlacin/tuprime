@@ -106,16 +106,13 @@
 		class="com.tuprime.business.personaldetails.PersonalDetailsServiceImpl">
 		<property name="personalDetailsDao" ref="personalDetailsDao" />
 	</bean>
-	<bean id="userDietService"
-		class="com.tuprime.business.userdiet.UserDietServiceImpl">
+	<bean id="userDietService" class="com.tuprime.business.userdiet.UserDietServiceImpl">
 		<property name="userDietDao" ref="userDietDao" />
 	</bean>
-	<bean id="userWorkoutService"
-		class="com.tuprime.business.userworkout.UserWorkoutServiceImpl">
+	<bean id="userWorkoutService" class="com.tuprime.business.userworkout.UserWorkoutServiceImpl">
 		<property name="userWorkoutDao" ref="userWorkoutDao" />
 	</bean>
-	<bean id="exerciseService"
-		class="com.tuprime.business.exercise.ExerciseServiceImpl">
+	<bean id="exerciseService" class="com.tuprime.business.exercise.ExerciseServiceImpl">
 		<property name="exerciseDao" ref="exerciseDao" />
 	</bean>
 	<bean id="userManagement" class="com.tuprime.business.user.UserManagementImpl">
@@ -137,6 +134,7 @@
 	</bean>
 
 	<bean id="authenticationService" class="com.tuprime.security.AuthenticationServiceImpl">
+		<property name="adminService" ref="adminService" />
 	</bean>
 	<!-- SECURITY END -->
 

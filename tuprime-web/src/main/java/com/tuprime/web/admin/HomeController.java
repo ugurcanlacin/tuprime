@@ -17,7 +17,6 @@ public class HomeController {
 	
 	@RequestMapping(value = { "/", "/admin/login" })
 	public ModelAndView getLoginForm() {
-		logger.info("The getLoginForm() was executed. ");
 		return new ModelAndView("admin/login");
 	}
 	@RequestMapping(value = "/redirect")

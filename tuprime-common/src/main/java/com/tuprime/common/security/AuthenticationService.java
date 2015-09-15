@@ -1,7 +1,7 @@
 package com.tuprime.common.security;
 
-
-
+import com.tuprime.entities.Admin;
 public interface AuthenticationService{
-	boolean login(String username, String password);
+	public Admin getAuthenticatedAdmin();
+	
 }

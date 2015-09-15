@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tuprime.common.business.role.RoleService;
 import com.tuprime.common.business.user.ManagementService;
 import com.tuprime.common.business.user.UserService;
+import com.tuprime.common.security.AuthenticationService;
 import com.tuprime.entities.Role;
 import com.tuprime.entities.User;
 import com.tuprime.web.util.*;
@@ -27,6 +30,11 @@ import com.tuprime.web.util.*;
 @RequestMapping("/admin/usermanagement")
 public class UserManagementController {
 
+	private static final Logger logger = Logger.getLogger(UserManagementController.class);
+	
+	@Resource(name = "authenticationService")
+	private AuthenticationService authService;
+	
 	@Resource(name = "userService")
 	private UserService userService;
 
@@ -35,6 +43,14 @@ public class UserManagementController {
 	
 	@Resource(name = "userManagement")
 	private ManagementService managementService;
+
+	public AuthenticationService getAuthService() {
+		return authService;
+	}
+
+	public void setAuthService(AuthenticationService authService) {
+		this.authService = authService;
+	}
 
 	public UserService getUserService() {
 		return userService;
@@ -62,6 +78,7 @@ public class UserManagementController {
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
 	public ModelAndView getAddUserPage() {
+		logger.info(authService.getAuthenticatedAdmin()+" executed getAddUserPage()");
 		return new ModelAndView("admin/addUser", "userForm", new User());
 	}
 
@@ -77,6 +94,7 @@ public class UserManagementController {
 		}
 		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
+		logger.info(authService.getAuthenticatedAdmin()+" executed addNewUser()");
 		return model;
 	}
 
@@ -87,11 +105,13 @@ public class UserManagementController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		logger.info(authService.getAuthenticatedAdmin()+" executed deleteUserById()");
 		return "redirect:/admin/usermanagement";
 	}
 
 	@RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
 	public ModelAndView editUserById(@PathVariable("id") int id) {
+		logger.info(authService.getAuthenticatedAdmin()+" executed editUserById()");
 		return new ModelAndView("admin/editUser","userForm",userService.find(id));
 	}
 
@@ -107,6 +127,7 @@ public class UserManagementController {
 		}
 		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
+		logger.info(authService.getAuthenticatedAdmin()+" executed editUserByInstance()");
 		return model;
 	}
 
@@ -114,6 +135,7 @@ public class UserManagementController {
 	public ModelAndView getRoleManagementPage() {
 		List<User> allUsers = userService.getAllUsers();
 		ModelAndView model = new ModelAndView("admin/role","users",allUsers);
+		logger.info(authService.getAuthenticatedAdmin()+" executed getRoleManagementPage()");
 		return model;
 	}
 
@@ -124,6 +146,7 @@ public class UserManagementController {
 		model.addObject("userForm", userForm);
 		model.addObject("roles", roleService.getAllRoles());
 		model.addObject("usersroleList", managementService.getUserRoleList(userForm));
+		logger.info(authService.getAuthenticatedAdmin()+" executed selectUserForRoleManagement()");
 		return model;
 	}
 
@@ -146,6 +169,7 @@ public class UserManagementController {
 		}
 		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
+		logger.info(authService.getAuthenticatedAdmin()+" executed editSelectedUserRole()");
 		return model;
 	}
 

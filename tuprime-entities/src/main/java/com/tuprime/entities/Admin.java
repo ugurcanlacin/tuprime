@@ -165,4 +165,8 @@ public class Admin implements java.io.Serializable {
 		this.login = login;
 	}
 
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
