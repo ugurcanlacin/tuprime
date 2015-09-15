@@ -5,10 +5,8 @@
 
 	<appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
 	   <param name="append" value="true" />
-	   <param name="maxFileSize" value="10MB" />
-	   <param name="maxBackupIndex" value="5" />
 	   <!-- For Tomcat -->
-	   <param name="file" value="C:/Logs/tuprime.log" />
+	   <param name="file" value="${user.home}/tuprime-log/tuprime.log" />
 	   <param name="DatePattern" value="'.'yyyy-MM-dd" />
 	   <layout class="org.apache.log4j.PatternLayout">
 		<param name="ConversionPattern" 
