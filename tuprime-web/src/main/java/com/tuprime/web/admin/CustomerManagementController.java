@@ -25,6 +25,7 @@ import com.tuprime.common.business.workout.WorkoutService;
 import com.tuprime.common.security.AuthenticationService;
 import com.tuprime.entities.Diet;
 import com.tuprime.entities.Exercise;
+import com.tuprime.entities.PersonalDetails;
 import com.tuprime.entities.User;
 import com.tuprime.entities.UserDiet;
 import com.tuprime.entities.UserWorkout;
@@ -233,6 +234,26 @@ public class CustomerManagementController {
 			System.out.println(e);
 		}
 		logger.info(authService.getAuthenticatedAdmin()+" executed deleteUserWorkoutById()");
+		return "redirect:/admin/customermanagement/select/" + user_id;
+	}
+	
+	
+	@RequestMapping(value = "/deletepdetail/{pdetail_id}/{user_id}", method = RequestMethod.GET)
+	public String deleteUserPersonalDietById(@PathVariable("pdetail_id") int pdetail_id,
+			@PathVariable("user_id") int user_id) {
+		try {
+			User user = userService.find(user_id);
+			Set<PersonalDetails> pdetailSet = user.getPersonalDetails();
+			for (PersonalDetails pdetail : pdetailSet) {
+				if(pdetail.getId()==pdetail_id)
+					pdetailSet.remove(pdetail);
+			}
+			user.setPersonalDetails(pdetailSet);
+			userService.merge(user);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		logger.info(authService.getAuthenticatedAdmin()+" executed deleteUserPersonalDietById()");
 		return "redirect:/admin/customermanagement/select/" + user_id;
 	}
 
