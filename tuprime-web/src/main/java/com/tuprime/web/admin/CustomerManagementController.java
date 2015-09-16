@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tuprime.common.business.diet.DietService;
 import com.tuprime.common.business.exercise.ExerciseService;
+import com.tuprime.common.business.personaldetails.PersonalDetailsService;
 import com.tuprime.common.business.user.UserService;
 import com.tuprime.common.business.userdiet.UserDietService;
 import com.tuprime.common.business.userworkout.UserWorkoutService;
@@ -54,6 +55,18 @@ public class CustomerManagementController {
 
 	@Resource(name = "userWorkoutService")
 	private UserWorkoutService userWorkoutService;
+	
+	@Resource(name = "personalDetailsService")
+	private PersonalDetailsService personalDetailsService;
+	
+	public PersonalDetailsService getPersonalDetailsService() {
+		return personalDetailsService;
+	}
+
+	public void setPersonalDetailsService(
+			PersonalDetailsService personalDetailsService) {
+		this.personalDetailsService = personalDetailsService;
+	}
 
 	public AuthenticationService getAuthService() {
 		return authService;
@@ -257,4 +270,35 @@ public class CustomerManagementController {
 		return "redirect:/admin/customermanagement/select/" + user_id;
 	}
 
+	@RequestMapping(value = "/addpdetail/{user_id}", method = RequestMethod.GET)
+	public ModelAndView getAddPersonalDetailsPage(@PathVariable("user_id") int user_id) {
+		ModelAndView model = new ModelAndView("trainer/addPDetail", "pdetail",
+				new PersonalDetails());
+		model.addObject("user_id", user_id);
+		logger.info(authService.getAuthenticatedAdmin()+" executed getAddPersonalDetailsPage()");
+		return model;
+	}
+	
+	@RequestMapping(value = "/addpdetail", method = RequestMethod.POST)
+	public ModelAndView addNewPersonalDetailForSpecificUser(
+			@ModelAttribute("pdetail") PersonalDetails personalDetail,
+			@RequestParam("user_id") int user_id) {
+		ModelAndView model = new ModelAndView("common/result");
+//		personalDetail.setTimestamp(new Date());
+//		personalDetailsService.merge(personalDetail);
+//		User user = userService.find(user_id);
+//		Set<PersonalDetails> pdetailSet = user.getPersonalDetails();
+//		pdetailSet.add(personalDetail);
+//		user.setPersonalDetails(pdetailSet);
+		try {
+//			userService.merge(user);
+			model.addObject("result", "Kayıt başarılıyla tamamlandı!");
+		} catch (Exception e) {
+			model.addObject("result",
+					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
+		}
+		model.addObject("redirectPath", "customermanagement/select/"+user_id);
+		logger.info(authService.getAuthenticatedAdmin()+" executed addNewPersonalDetailForSpecificUser()");
+		return model;
+	}
 }

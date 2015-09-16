@@ -36,14 +36,6 @@ public class PersonalDetails implements java.io.Serializable {
 	private String waist;
 	private String hips;
 	private String biceps;
-
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="user_pdetails",
-	joinColumns={@JoinColumn(name="pdetails_id", referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
-	private List<User> userList;
-	
 	
 	public PersonalDetails() {
 	}
@@ -123,18 +115,10 @@ public class PersonalDetails implements java.io.Serializable {
 		this.biceps = biceps;
 	}
 
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
-
-	@Override
-	public int hashCode() {
-		return getId();
-	}
+//	@Override
+//	public int hashCode() {
+//		return getId();
+//	}
 
 	@Override
 	public boolean equals(Object other) {

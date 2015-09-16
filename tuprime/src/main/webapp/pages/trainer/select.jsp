@@ -184,7 +184,7 @@
 							<div class="tab-pane" id="tab_3">
 
 								<p>
-									<a class="btn bg-olive margin" href="<c:url value="/admin/customermanagement/addpdetails/${userForm.id}"/>">Ölçü Ekle</a>
+									<a class="btn bg-olive margin" href="<c:url value="/admin/customermanagement/addpdetail/${userForm.id}"/>">Ölçü Ekle</a>
 								</p>
 								<!-- Main content -->
 								<section class="content">

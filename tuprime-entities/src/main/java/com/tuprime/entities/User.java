@@ -59,7 +59,7 @@ public class User implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
 	private Set<UserWorkout> userWorkout = new HashSet<UserWorkout>();
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_pdetails", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "pdetails_id", referencedColumnName = "id") })
 	private Set<PersonalDetails> personalDetails;
 	private String username;
