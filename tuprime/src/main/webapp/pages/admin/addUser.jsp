@@ -81,7 +81,7 @@
 	                    </div>
                     	<label for="passwordHash" class="col-sm-1 control-label">Şifre</label>
 	                    <div class="col-sm-4">
-	                        <form:input path="passwordHash" id="passwordHash"  class="form-control" maxlength="64"/>
+	                        <form:password path="passwordHash" id="passwordHash"  class="form-control" maxlength="64"/>
 	                    </div>
                     </div>
                     <div class="form-group">

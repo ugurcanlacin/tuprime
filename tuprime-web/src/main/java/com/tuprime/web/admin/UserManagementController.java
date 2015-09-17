@@ -87,9 +87,9 @@ public class UserManagementController {
 		user = managementService.prepareNewUser(user);
 		try {
 			userService.merge(user);
-			model.addObject("result", "KayÄ±t baÅŸarÄ±lÄ±yla tamamlandÄ±!");
+			model.addObject("result", "Kayıt başarıyla tamamlandı!");
 		} catch (Exception e) {
-			model.addObject("result", "KayÄ±t baÅŸarÄ±sÄ±z oldu. LÃ¼tfen tekrar deneyin.");
+			model.addObject("result", "Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
 		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
@@ -120,9 +120,9 @@ public class UserManagementController {
 		user = managementService.prepareUserForEdit(user);
 		try {
 			userService.update(user);
-			model.addObject("result", "GÃ¼ncelleme baÅŸarÄ±yla tamamlandÄ±!");
+			model.addObject("result", "Güncelleme başarıyla tamamlandı!");
 		} catch (Exception e) {
-			model.addObject("result", "GÃ¼ncelleme tamamlanmadÄ±.LÃ¼tfen tekrar deneyiniz.");
+			model.addObject("result", "Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
 		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);
@@ -162,9 +162,9 @@ public class UserManagementController {
 		user.setRole(roleList);
 		try {
 			userService.merge(user);
-			model.addObject("result", "Yetki ayarlarÄ± baÅŸarÄ±yla kaydedildi.");
+			model.addObject("result", "Yetki ayarları başarıyla kaydedildi.");
 		} catch (Exception e) {
-			model.addObject("result", "Yetki ayarlarÄ± kaydÄ± baÅŸarÄ±sÄ±z oldu.LÃ¼tfen tekrar deneyiniz.");
+			model.addObject("result", "Yetki ayarları kaydı başarısız oldu.Lütfen tekrar deneyiniz.");
 		}
 		model.addObject("redirectPath", "usermanagement");
 		model.addObject("userForm", user);

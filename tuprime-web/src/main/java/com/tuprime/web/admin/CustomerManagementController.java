@@ -162,10 +162,10 @@ public class CustomerManagementController {
 		userDiet.setUser(userService.find(user_id));
 		try {
 			userDietService.merge(userDiet);
-			model.addObject("result", "KayÄ±t baÅŸarÄ±lÄ±yla tamamlandÄ±!");
+			model.addObject("result", "Kayıt başarıyla tamamlandı!");
 		} catch (Exception e) {
 			model.addObject("result",
-					"KayÄ±t baÅŸarÄ±sÄ±z oldu. LÃ¼tfen tekrar deneyin.");
+					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
 		model.addObject("redirectPath", "customermanagement/select/"+user_id);
 		logger.info(authService.getAuthenticatedAdmin()+" executed addNewDietForSpecificUser()");
@@ -187,10 +187,10 @@ public class CustomerManagementController {
 		diet.setTimestamp(new Date());
 		try {
 			dietService.update(diet);
-			model.addObject("result", "GÃ¼ncelleme baÅŸarÄ±yla tamamlandÄ±!");
+			model.addObject("result", "Güncelleme başarıyla tamamlandı!");
 		} catch (Exception e) {
 			model.addObject("result",
-					"GÃ¼ncelleme tamamlanmadÄ±.LÃ¼tfen tekrar deneyiniz.");
+					"Güncelleme tamamlanmadı.Lütfen tekrar deneyiniz.");
 		}
 		model.addObject("redirectPath", "customermanagement");
 		logger.info(authService.getAuthenticatedAdmin()+" executed editUserByInstance()");
@@ -225,10 +225,10 @@ public class CustomerManagementController {
 		userWorkout.setWorkout(workout);
 		try {
 			userWorkoutService.merge(userWorkout);
-			model.addObject("result", "KayÄ±t baÅŸarÄ±lÄ±yla tamamlandÄ±!");
+			model.addObject("result", "Kayıt başarıyla tamamlandı!");
 		} catch (Exception e) {
 			model.addObject("result",
-					"KayÄ±t baÅŸarÄ±sÄ±z oldu. LÃ¼tfen tekrar deneyin.");
+					"Kayıt başarısız oldu. Lütfen tekrar deneyin.");
 		}
 		model.addObject("redirectPath", "customermanagement/select/"+user_id);
 		logger.info(authService.getAuthenticatedAdmin()+" executed addNewWorkoutForSpecificUser()");
