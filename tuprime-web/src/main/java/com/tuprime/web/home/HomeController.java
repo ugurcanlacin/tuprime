@@ -1,4 +1,4 @@
-package com.tuprime.web.admin;
+package com.tuprime.web.home;
 
 
 import org.springframework.stereotype.Controller;
@@ -15,9 +15,9 @@ public class HomeController {
 	
 	private static final Logger logger = Logger.getLogger(HomeController.class);
 	
-	@RequestMapping(value = { "/", "/admin/login" })
-	public ModelAndView getLoginForm() {
-		return new ModelAndView("admin/login");
+	@RequestMapping(value = "/")
+	public ModelAndView getAdminLoginForm() {
+		return new ModelAndView("common/login");
 	}
 	@RequestMapping(value = "/redirect")
 	public ModelAndView getRedirectPage() {

@@ -11,12 +11,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import com.tuprime.common.business.admin.AdminService;
+import com.tuprime.common.business.user.UserService;
 import com.tuprime.common.security.AuthenticationService;
 import com.tuprime.entities.Admin;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
 
 	private AdminService adminService;
+	private UserService userService;
 
 	public AdminService getAdminService() {
 		return adminService;
@@ -24,6 +26,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	public void setAdminService(AdminService adminService) {
 		this.adminService = adminService;
+	}
+	
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 	@Override
@@ -37,5 +47,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 				.getAuthentication();
 		return (User) authentication.getPrincipal();
 	}
+	
+	public com.tuprime.entities.User getAuthenticatedUserInstance(){
+		return userService.loadUser(getAuthenticatedUser().getUsername());
+	}
+
 
 }

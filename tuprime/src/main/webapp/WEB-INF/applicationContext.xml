@@ -135,6 +135,7 @@
 
 	<bean id="authenticationService" class="com.tuprime.security.AuthenticationServiceImpl">
 		<property name="adminService" ref="adminService" />
+		<property name="userService" ref="userService" />
 	</bean>
 	<!-- SECURITY END -->
 
