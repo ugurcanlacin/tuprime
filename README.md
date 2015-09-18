@@ -24,10 +24,11 @@ Technologies
 - MySQL
 - Log4j
 - Admin LTE
-- 
 
 Commits
 -----------------------------
 If you want to contribute this project, you are very welcome!
+
+That's a screenshot from admin interface. You can watch a presentation of project via clicking that image.
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/8QAQQ6Yi704/0.jpg)](http://www.youtube.com/watch?v=8QAQQ6Yi704)
