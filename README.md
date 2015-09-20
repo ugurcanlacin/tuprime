@@ -9,6 +9,7 @@ How to compile it?
 --------------------
 You should have Maven tool to compile this project.
 If you use Eclipse, pull the project and Right Click on Project -> Maven -> Update Project.
+If you want to compile it from command line.Go to project root with command line and execute "mvn clean install".
 
 Project Requirements
 --------------------
